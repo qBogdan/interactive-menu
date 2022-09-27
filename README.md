@@ -3,4 +3,4 @@
 ## TEAM
 
 [Ghitun Iulian](https://github.com/qBogdan)
-[Dana Vlas](https://github.com/vlasdana)
+[Ichim Emanuel](https://github.com/ieemy)
