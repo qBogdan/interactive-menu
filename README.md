@@ -1,4 +1,4 @@
-# menu-recipes
+# Interactive Restaurant Menu
 
 ## TEAM
 
