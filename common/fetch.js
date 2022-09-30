@@ -11,7 +11,16 @@ const div = () => document.createElement("dic"); // create div shortcut
 
 // common fetch and request js
 
-let recipes, filteredRecipes;
+let recipes;
+const categories = [
+    "Aperitive",
+    "Pizza",
+    "Preparate din Pui",
+    "Preparate de Vita",
+    "Garnituri",
+    "Desert",
+    "Bauturi",
+];
 
 const testRecipe = {
     id: "",
@@ -23,16 +32,16 @@ const testRecipe = {
 
 function loadRecipes() {
     fetch("http://localhost:3000/recipes-json")
-        .then(list => list.json())
-        .then(r => {
+        .then((list) => list.json())
+        .then((r) => {
             recipes = r;
-            testDisplay();
+            //testDisplay();
         });
 }
 
 function testDisplay() {
     $("body").innerHTML = "";
-    recipes.forEach(element => {
+    recipes.forEach((element) => {
         $("body").innerHTML += `${element.name} : ${element.id} <br>`;
     });
 }
@@ -72,4 +81,4 @@ function updateRecipe(id, name) {
     });
 }
 
-loadRecipes();
+//loadRecipes();
