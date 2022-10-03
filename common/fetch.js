@@ -16,14 +16,13 @@ const categories = ["Aperitive", "Pizza", "Preparate din Pui", "Preparate de Vit
 const alergens = ["lactoza", "gluten"];
 
 const testRecipe = {
-    id: "",
     name: "Pizza Quatro Staggioni",
     category: "Pizza",
     availability: true,
     weight: 450,
     price: 35,
     ingredients: ["salam", "mozzarela", "sos de rosii", "ciuperci"],
-    img: "pizaQS",
+    img: "pizzaQS",
 };
 
 function loadRecipes() {
