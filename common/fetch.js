@@ -12,28 +12,24 @@ const div = () => document.createElement("dic"); // create div shortcut
 // common fetch and request js
 
 let recipes;
-const categories = [
-    "Aperitive",
-    "Pizza",
-    "Preparate din Pui",
-    "Preparate de Vita",
-    "Garnituri",
-    "Desert",
-    "Bauturi",
-];
+const categories = ["Aperitive", "Pizza", "Preparate din Pui", "Preparate de Vita", "Garnituri", "Desert", "Bauturi"];
+const alergens = ["lactoza", "gluten"];
 
 const testRecipe = {
     id: "",
-    name: "Pizza noua",
-    weight: 410,
-    price: 37,
-    ingredients: "salam, mozzarela, sos de rosii, ton",
+    name: "Pizza Quatro Staggioni",
+    category: "Pizza",
+    availability: true,
+    weight: 450,
+    price: 35,
+    ingredients: ["salam", "mozzarela", "sos de rosii", "ciuperci"],
+    img: "pizaQS",
 };
 
 function loadRecipes() {
     fetch("http://localhost:3000/recipes-json")
-        .then((list) => list.json())
-        .then((r) => {
+        .then(list => list.json())
+        .then(r => {
             recipes = r;
             //testDisplay();
         });
@@ -41,7 +37,7 @@ function loadRecipes() {
 
 function testDisplay() {
     $("body").innerHTML = "";
-    recipes.forEach((element) => {
+    recipes.forEach(element => {
         $("body").innerHTML += `${element.name} : ${element.id} <br>`;
     });
 }
@@ -81,4 +77,4 @@ function updateRecipe(id, name) {
     });
 }
 
-//loadRecipes();
+loadRecipes();
