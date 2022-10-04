@@ -35,6 +35,7 @@ header {
         rgba(64, 15, 5, 1) 100%
     );
     position: relative;
+    box-shadow: 0px 5px 5px rgb(59, 3, 3);
 }
 
 header::after {
@@ -57,6 +58,13 @@ header img {
 .main {
     width: 100%;
     flex: 1;
+    margin: 0.5rem;
+    padding: 0 0.5rem;
+    overflow: auto;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
 }
 
 footer {
@@ -64,6 +72,7 @@ footer {
     height: 4rem;
     padding: 0.5rem;
     background-color: #521010;
+    box-shadow: 0px -5px 5px rgb(59, 3, 3);
 }
 
 .searchIcon {
@@ -96,4 +105,88 @@ footer input {
     aspect-ratio: 1;
     background-image: url("../Media/UI/dishIcon.svg");
     background-size: cover;
+}
+
+/* --- main card ---*/
+
+.mainCard {
+    background-color: #581515;
+    width: 100%;
+    height: 7rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.26);
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.picture {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.25rem;
+    background-color: white;
+    background-image: url("../Media/Pictures/pizzaDemo.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.content {
+    width: 100%;
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainCard h1 {
+    color: white;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid bisque;
+}
+
+.info {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    padding-top: 0.5rem;
+}
+
+.infoText {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 0.25rem;
+    flex-direction: column;
+}
+
+.weight,
+.price {
+    flex: 1;
+    width: 100%;
+    background-color: bisque;
+    border-radius: 999px;
+    justify-content: space-evenly;
+    font-weight: bold;
+}
+
+.add {
+    height: 100%;
+    aspect-ratio: 1;
+    background-image: url("../Media/UI/addButton.svg");
+    margin-left: 0.5rem;
+}
+
+/*---- secondary card --- */
+
+@media only screen and (min-width: 600px) {
+    .mainCard {
+        background-color: #581515;
+        width: 45%;
+        height: 8rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.26);
+        display: flex;
+        margin: auto;
+        margin-bottom: 0.5rem;
+    }
 }

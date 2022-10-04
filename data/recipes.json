@@ -1,0 +1,114 @@
+[
+    {
+        "name": "Pizza Quatro Staggioni",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    },
+    {
+        "name": "Pizza Quatro Staggioni2",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    },
+    {
+        "name": "Pizza Quatro Staggioni 3",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    },
+    {
+        "name": "Pizza Quatro Staggioni 4",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    },
+    {
+        "name": "Pizza Quatro Staggioni 5",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    },
+    {
+        "name": "Pizza Quatro Staggioni 6",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    },
+    {
+        "name": "Pizza Quatro Staggioni 7",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    },
+    {
+        "name": "Pizza Quatro Staggioni 8",
+        "category": "Pizza",
+        "availability": true,
+        "weight": 450,
+        "price": 35,
+        "ingredients": [
+            "salam",
+            "mozzarela",
+            "sos de rosii",
+            "ciuperci"
+        ],
+        "img": "pizzaQS"
+    }
+]
