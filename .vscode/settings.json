@@ -5,7 +5,10 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true
+        "**/Thumbs.db": true,
+        "*.md": true,
+        "**/.gitignore": true
     },
-    "hide-files.files": []
+    "hide-files.files": [],
+    "explorerExclude.backup": {}
 }
