@@ -1,4 +1,10 @@
-# Interactive Restaurant Menu
+## Interactive Restaurant Menu
+
+## Goals 
+- [x] Admin app - w.i.p.
+- [ ] Price and tip Calculator 
+- [ ] Search function
+- [ ] Alergens highlight
 
 ## TEAM
 
