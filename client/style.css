@@ -55,14 +55,14 @@ header img {
     height: 70%;
 }
 
-.category {
-    width: 100%;
+.categoryTab {
+    width: calc(100% - 1rem);
     height: 2rem;
     border-radius: 999px;
     background-color: brown;
-    margin: 0.5rem;
     display: flex;
     align-items: center;
+    margin-top: 1rem;
 }
 
 .leftArrow,
@@ -106,15 +106,37 @@ header img {
     font-weight: bold;
 }
 
-.main {
-    width: 100%;
+main {
+    width: 100vw;
     flex: 1;
     margin: 0.5rem;
-    padding: 0 0.5rem;
-    overflow: auto;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    overflow: hidden;
 }
 
-.main::-webkit-scrollbar {
+.categoryWrapper {
+    transition: 0.5s;
+    top: 0;
+    left: 0vw;
+    display: flex;
+    position: absolute;
+    height: 100%;
+}
+
+.category {
+    border: 3px solid white;
+    width: 100vw;
+    height: 100%;
+    padding: 0 0.5rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main::-webkit-scrollbar {
     display: none;
 }
 
@@ -160,7 +182,13 @@ footer input {
 /* --- main card ---*/
 
 .mainCard {
-    background-color: #4e1b1b;
+    background-color: sienna;
+    background: linear-gradient(
+        45deg,
+        rgb(24, 11, 12) 0%,
+        rgb(112, 4, 4) 80%,
+        rgb(209, 58, 58) 100%
+    );
     width: 100%;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -209,18 +237,29 @@ footer input {
     width: 100%;
     height: 100%;
     display: flex;
-    gap: 0.25rem;
+    gap: 0.3rem;
     flex-direction: column;
 }
 
+.infoDetails {
+    display: flex;
+    flex: 1;
+    gap: 0.3rem;
+}
 .weight,
-.price {
+.price,
+.eta {
     flex: 1;
     width: 100%;
     background-color: bisque;
     border-radius: 999px;
     justify-content: space-evenly;
     font-weight: bold;
+}
+
+.mainCard p span {
+    color: white;
+    font-size: 1.2rem;
 }
 
 .add {
@@ -230,12 +269,16 @@ footer input {
     background-position: center;
     margin-left: 0.5rem;
     border-radius: 50%;
+    cursor: pointer;
 }
+
 /* expanded */
 
 .mainCardExpanded {
     flex-direction: column;
     align-items: center;
+    background-color: #b22222;
+    background: linear-gradient(0deg, rgb(24, 11, 12) 0%, rgb(112, 4, 4) 80%, rgb(64, 6, 82) 100%);
 }
 
 .mainCardExpanded h1 {
@@ -244,7 +287,7 @@ footer input {
 
 .mainCardExpanded .picture {
     width: 100%;
-    height: 7rem;
+    height: 10rem;
 }
 
 .mainCardExpanded .ingredients {

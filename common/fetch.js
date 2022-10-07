@@ -27,6 +27,7 @@ const testRecipe = {
     name: "Pizza Quatro Staggioni",
     category: "Pizza",
     availability: true,
+    eta: 25, // estimated time of arrival
     weight: 450,
     price: 35,
     ingredients: ["salam", "mozzarela", "sos de rosii", "ciuperci"],
