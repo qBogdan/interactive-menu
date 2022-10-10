@@ -1,10 +1,12 @@
 let page = 0;
 let touchStart,
     touchEnd = 0;
+var container = document.querySelector("main");
+var listener = SwipeListener(container);
 
 function initEvents() {
-    $$(".mainCard").forEach((card) => {
-        card.addEventListener("click", (e) => {
+    $$(".mainCard").forEach(card => {
+        card.addEventListener("click", e => {
             if (e.target.matches(".add")) {
                 addItem(e);
             } else {
@@ -13,24 +15,27 @@ function initEvents() {
         });
     });
 
-    $("main").addEventListener("touchstart", (e) => {
-        touchStart = e.touches[0].clientX;
+    $("main").addEventListener("swipe", e => {
+        let directions = e.detail.directions;
+
+        if (directions.left) {
+            changeCategory("right");
+        }
+
+        if (directions.right) {
+            changeCategory("left");
+        }
     });
 
-    $("main").addEventListener("touchend", (e) => {
-        touchEnd = e.changedTouches[0].clientX;
-        checkSwipe();
-    });
-
-    $$(".smallCard").forEach((card) => {
-        card.addEventListener("click", (e) => {
+    $$(".smallCard").forEach(card => {
+        card.addEventListener("click", e => {
             if (e.target.matches(".add")) {
                 addItem(e);
             }
         });
     });
 
-    $(".categoryTab").addEventListener("click", (e) => {
+    $(".categoryTab").addEventListener("click", e => {
         if (e.target.matches(".arrow")) {
             changeCategory(e.target.dataset.direction);
         }
@@ -67,7 +72,7 @@ function expandCard(card) {
     if (card.matches(".mainCardExpanded")) {
         card.classList.remove("mainCardExpanded");
     } else {
-        $$(".mainCard").forEach((card) => {
+        $$(".mainCard").forEach(card => {
             card.classList.remove("mainCardExpanded");
         });
         card.classList.toggle("mainCardExpanded");

@@ -11,7 +11,6 @@ async function checkServer() {
         fetch_adress = "../data/recipes.json";
         console.log("DEMO MODE");
     }
-
     loadRecipes();
 }
 
@@ -19,8 +18,8 @@ checkServer();
 
 function loadRecipes() {
     fetch(fetch_adress)
-        .then((list) => list.json())
-        .then((r) => {
+        .then(list => list.json())
+        .then(r => {
             recipes = r;
         });
 }
@@ -42,14 +41,14 @@ function createRecipe(recipe) {
 }
 
 function testDisplay() {
-    recipes.forEach((recipe) => {
+    recipes.forEach(recipe => {
         console.log(recipe.name, " - id: ", recipe.id);
     });
 }
 
 function deleteRecipe(id) {
     if (demo) {
-        recipes = recipes.filter((recipe) => recipe.id !== id);
+        recipes = recipes.filter(recipe => recipe.id !== id);
     } else {
         return fetch("http://localhost:3000/recipes-json/delete", {
             method: "DELETE",
@@ -63,7 +62,7 @@ function deleteRecipe(id) {
 
 function updateRecipe(recipe) {
     if (demo) {
-        const update = recipes.find((r) => r.id === recipe.id);
+        const update = recipes.find(r => r.id === recipe.id);
         for (let key in update) {
             update[key] = recipe[key];
         }
