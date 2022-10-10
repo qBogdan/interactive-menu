@@ -1,88 +1,79 @@
-// common functions
-function $(selector) {
-    return document.querySelector(selector);
-} // query selector helper function
+let demo, fetch_adress;
 
-function $$(selector) {
-    return document.querySelectorAll(selector);
-} // query selector all helper function, returns array of elements
+async function checkServer() {
+    try {
+        await fetch("http://localhost:3000/recipes-json");
+        demo = false;
+        fetch_adress = "http://localhost:3000/recipes-json";
+        console.log("SERVER MODE");
+    } catch (err) {
+        demo = true;
+        fetch_adress = "../data/recipes.json";
+        console.log("DEMO MODE");
+    }
 
-const div = () => document.createElement("dic"); // create div shortcut
+    loadRecipes();
+}
 
-// common fetch and request js
-
-let recipes;
-const categories = [
-    "Aperitive",
-    "Pizza",
-    "Preparate din Pui",
-    "Preparate de Vita",
-    "Garnituri",
-    "Desert",
-    "Bauturi",
-];
-const alergens = ["lactoza", "gluten"];
-
-const testRecipe = {
-    name: "Pizza Quatro Staggioni",
-    category: "Pizza",
-    availability: true,
-    eta: 25, // estimated time of arrival
-    weight: 450,
-    price: 35,
-    ingredients: ["salam", "mozzarela", "sos de rosii", "ciuperci"],
-    img: "pizzaQS",
-};
+checkServer();
 
 function loadRecipes() {
-    fetch("http://localhost:3000/recipes-json")
+    fetch(fetch_adress)
         .then((list) => list.json())
         .then((r) => {
             recipes = r;
-            //testDisplay();
         });
 }
 
-function testDisplay() {
-    $("body").innerHTML = "";
-    recipes.forEach((element) => {
-        $("body").innerHTML += `${element.name} : ${element.id} <br>`;
-    });
+function createRecipe(recipe) {
+    if (demo) {
+        const date = new Date();
+        recipe.id = `demoID${date.getTime()}`;
+        recipes.push(recipe);
+    } else {
+        return fetch("http://localhost:3000/recipes-json/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(recipe),
+        });
+    }
 }
 
-function createRecipe(name) {
-    const newRecipe = { ...testRecipe };
-    newRecipe.name = name;
-    return fetch("http://localhost:3000/recipes-json/create", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newRecipe),
+function testDisplay() {
+    recipes.forEach((recipe) => {
+        console.log(recipe.name, " - id: ", recipe.id);
     });
 }
 
 function deleteRecipe(id) {
-    return fetch("http://localhost:3000/recipes-json/delete", {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: id }),
-    });
+    if (demo) {
+        recipes = recipes.filter((recipe) => recipe.id !== id);
+    } else {
+        return fetch("http://localhost:3000/recipes-json/delete", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: id }),
+        });
+    }
 }
 
-function updateRecipe(id, name) {
-    const update = { ...testRecipe };
-    update.id = id;
-    update.name = name;
-    return fetch("http://localhost:3000/recipes-json/update", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(update),
-    });
+function updateRecipe(recipe) {
+    if (demo) {
+        const update = recipes.find((r) => r.id === recipe.id);
+        for (let key in update) {
+            update[key] = recipe[key];
+        }
+    } else {
+        return fetch("http://localhost:3000/recipes-json/update", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(update),
+        });
+    }
 }
-
-//loadRecipes();
