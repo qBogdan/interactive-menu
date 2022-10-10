@@ -9,6 +9,14 @@ function initEvents() {
         });
     });
 
+    $$(".smallCard").forEach((card) => {
+        card.addEventListener("click", (e) => {
+            if (e.target.matches(".add")) {
+                addItem(e);
+            }
+        });
+    });
+
     $(".categoryTab").addEventListener("click", (e) => {
         if (e.target.matches(".arrow")) {
             changeCategory(e.target.dataset.direction);
@@ -19,14 +27,21 @@ function initEvents() {
 let page = 0;
 
 function changeCategory(direction) {
-    if (direction === "left") {
+    if (direction === "left" && page < 0) {
         page++;
-    } else {
+        $(".categoryWrapper").style.left = `${0 + page * 100}%`;
+    } else if (direction === "right" && page > -$$(".category").length + 1) {
         page--;
+        $(".categoryWrapper").style.left = `${0 + page * 100}%`;
     }
 
-    $(".categoryWrapper").style.left = `${0 + page * 100}%`;
-    console.log(direction, page);
+    changeCategoryTitle();
+}
+
+function changeCategoryTitle() {
+    const index = Math.abs(page);
+    const categories = $$(".category");
+    $(".categoryTitle").innerText = categories[index].dataset.name;
 }
 
 function expandCard(card) {
