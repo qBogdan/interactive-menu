@@ -17,3 +17,8 @@
 ## Live
 
 [Demo](https://qBogdan.github.io/interactive-menu)
+
+
+## Admin app API
+
+[Repository](https://github.com/qBogdan/interactive-menu-api)
