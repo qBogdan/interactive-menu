@@ -5,6 +5,7 @@
 - [ ] Price and tip Calculator 
 - [ ] Search function
 - [ ] Alergens highlight
+- [ ] Mobile friendly
 
 ## TEAM
 
