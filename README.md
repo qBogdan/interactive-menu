@@ -21,4 +21,4 @@
 
 ## Admin app API
 
-[Admin App](https://github.com/qBogdan/interactive-menu-api)
+[Admin App API](https://github.com/qBogdan/interactive-menu-api)
