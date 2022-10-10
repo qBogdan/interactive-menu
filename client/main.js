@@ -1,3 +1,7 @@
+let page = 0;
+let touchStart,
+    touchEnd = 0;
+
 function initEvents() {
     $$(".mainCard").forEach((card) => {
         card.addEventListener("click", (e) => {
@@ -7,6 +11,15 @@ function initEvents() {
                 expandCard(card);
             }
         });
+    });
+
+    $("main").addEventListener("touchstart", (e) => {
+        touchStart = e.touches[0].clientX;
+    });
+
+    $("main").addEventListener("touchend", (e) => {
+        touchEnd = e.changedTouches[0].clientX;
+        checkSwipe();
     });
 
     $$(".smallCard").forEach((card) => {
@@ -24,8 +37,6 @@ function initEvents() {
     });
 }
 
-let page = 0;
-
 function changeCategory(direction) {
     if (direction === "left" && page < 0) {
         page++;
@@ -36,6 +47,14 @@ function changeCategory(direction) {
     }
 
     changeCategoryTitle();
+}
+
+function checkSwipe() {
+    if (touchEnd - touchStart > 50) {
+        changeCategory("left");
+    } else if (touchEnd - touchStart < 50) {
+        changeCategory("right");
+    }
 }
 
 function changeCategoryTitle() {
