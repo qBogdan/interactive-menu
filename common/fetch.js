@@ -19,7 +19,7 @@ const API = {
 
 let editId;
 //const demo = location.host === "qbogdan.github.io" ? true : false;
-demo = true;
+demo = false;
 
 const inLineChanges = demo;
 if (demo) {
@@ -35,10 +35,11 @@ if (demo) {
 
 function loadRecipes() {
     fetch(API.READ.URL)
-        .then((list) => list.json())
-        .then((r) => {
+        .then(list => list.json())
+        .then(r => {
             recipes = r;
             //reload display
+            console.log(recipes);
         });
 }
 
@@ -53,12 +54,14 @@ function createRecipe(recipe) {
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
     })
-        .then((res) => res.json())
-        .then((r) => {
+        .then(res => res.json())
+        .then(r => {
             if (r.success) {
                 if (inLineChanges) {
                     recipe.id = `demoID${date.getTime()}`;
                     recipes.push(recipe);
+                    //reload display
+                    console.log(recipes);
                 } else {
                     loadRecipes();
                 }
@@ -76,12 +79,17 @@ function updateRecipe(recipe) {
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
     })
-        .then((res) => res.json())
-        .then((r) => {
+        .then(res => res.json())
+        .then(r => {
             if (r.success) {
                 if (inLineChanges) {
-                    recipes = recipes.map((r) => (r.id === editId ? recipe : r));
+                    const update = recipes.find(r => r.id === recipe.id);
+                    for (let key in update) {
+                        update[key] = recipe[key];
+                    }
+                    //recipes = recipes.map(r => (r.id === editId ? recipe : r));
                     // reload display
+                    console.log(recipes);
                 } else {
                     loadRecipes();
                 }
@@ -89,21 +97,22 @@ function updateRecipe(recipe) {
         });
 }
 
-function deleteRecipe(id) {
-    const method = API.UPDATE.METHOD;
+function deleteRecipe(delId) {
+    const method = API.DELETE.METHOD;
 
     return fetch(API.DELETE.URL, {
         method,
         headers: {
             "Content-Type": "application/json",
         },
-        body: method === "GET" ? null : JSON.stringify({ id }),
+        body: method === "GET" ? null : JSON.stringify({ id: delId }),
     })
-        .then((res) => res.json())
-        .then((r) => {
+        .then(res => res.json())
+        .then(r => {
+            console.log(r);
             if (r.success) {
                 if (inLineChanges) {
-                    recipes = recipes.filter((r) => r.id !== id);
+                    recipes = recipes.filter(r => r.id !== delId);
                     // reload display
                 } else {
                     loadRecipes();
@@ -111,3 +120,5 @@ function deleteRecipe(id) {
             }
         });
 }
+
+loadRecipes();
