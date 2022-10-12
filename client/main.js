@@ -40,6 +40,14 @@ function initEvents() {
             changeCategory(e.target.dataset.direction);
         }
     });
+
+    $(".checkInfo").addEventListener("click", () => {
+        showCheckout();
+    });
+}
+
+function showCheckout() {
+    console.log("check Please");
 }
 
 function changeCategory(direction) {

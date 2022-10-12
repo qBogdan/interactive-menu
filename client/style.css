@@ -20,6 +20,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: #1a0808;
+    position: relative;
 }
 
 section {
@@ -146,12 +147,12 @@ main::-webkit-scrollbar {
 footer {
     width: 100%;
     height: 4rem;
-    padding: 0.5rem;
+    padding: 1rem .5rem;
     background-color: #521010;
 }
 
 .searchIcon {
-    height: 70%;
+    height: 100%;
     aspect-ratio: 1;
     background-color: white;
     border-top-left-radius: 50%;
@@ -165,7 +166,7 @@ footer {
 footer input {
     border-top-right-radius: 999px;
     border-bottom-right-radius: 999px;
-    height: 70%;
+    height: 100%;
     flex: 1;
     padding: 1rem;
     margin-right: 0.5rem;
@@ -175,6 +176,20 @@ footer input {
     outline: none;
 }
 
+.checkInfo {
+    height: 100%;
+    aspect-ratio: 2/1;
+    border-radius: 999px;
+    background-color: white;
+    display: flex;
+
+    
+}
+
+.checkNumber {
+    flex: 1;
+
+}
 .check {
     height: 100%;
     aspect-ratio: 1;
@@ -200,8 +215,9 @@ footer input {
 }
 
 .picture {
-    height: 6rem;
-    aspect-ratio: 1;
+    min-height: 6rem ;
+    height: 6rem ;
+    width: 6rem;    
     border-radius: 0.25rem;
     background-color: white;
     background-image: url("../Media/Pictures/pizzaDemo.jpg");
@@ -218,6 +234,7 @@ footer input {
 
 .mainCard h1 {
     color: white;
+    font-size: auto;
     padding-bottom: 0.3rem;
     border-bottom: 2px solid bisque;
 }
@@ -334,4 +351,64 @@ footer input {
     .smallCard {
         width: 45%;
     }
+}
+
+.checkWindow {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10000;
+    background-color: #1a0808c4;
+    padding: 2rem 1rem ;
+}
+
+.checkWindowHidden {
+    top: -100%;
+}
+
+.checkTable {
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.total {
+    height: 3rem;
+    background-color: yellowgreen;
+}
+
+.checkHeader {
+    width: 100%;
+    height: 4rem;
+    background-color: #521010;
+    background-image: url('../Media/UI/logo.svg');
+    background-position: center;
+    background-size: 30%;
+    background-repeat: no-repeat;
+}
+
+.mainCheck {
+    width: 100%;
+    flex: 1;
+    font-display: flex;
+    flex-direction: column;
+    padding: .5rem;
+}
+
+.checkFooter {
+    width: 100%;
+    height: 5rem;
+    background-color: aqua;
+}
+
+.checkCard {
+    width: 100%;
+    height: 4rem;
+    background-color: violet;
+    border-radius: .5rem;
+    display: flex;
 }

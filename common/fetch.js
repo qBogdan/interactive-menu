@@ -19,7 +19,7 @@ const API = {
 
 let editId;
 //const demo = location.host === "qbogdan.github.io" ? true : false;
-demo = false;
+demo = true;
 
 const inLineChanges = demo;
 if (demo) {
