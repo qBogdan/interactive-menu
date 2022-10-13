@@ -12,7 +12,7 @@ const div = () => document.createElement("dic"); // create div shortcut
 
 let recipes;
 const categories = [
-    "Aperitive",
+    "Paste",
     "Pizza",
     "Preparate din Pui",
     "Preparate de Vita",
