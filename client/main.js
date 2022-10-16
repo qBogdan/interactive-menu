@@ -1,4 +1,5 @@
 let page = 0;
+let orderList = [];
 let touchStart,
     touchEnd = 0;
 var container = document.querySelector("main");
@@ -45,10 +46,14 @@ function mainInitEvents() {
     $(".checkInfo").addEventListener("click", () => {
         showCheckout();
     });
+
+    $(".closeCheck").addEventListener("click", () => {
+        $(".checkWindow").classList.add("checkWindowHidden");
+    });
 }
 
 function showCheckout() {
-    console.log("check Please");
+    $(".checkWindow").classList.remove("checkWindowHidden");
 }
 
 function changeCategory(direction) {
@@ -97,10 +102,13 @@ function addItem(e) {
         e.target.style.transition = "transform .2s ease-in";
         e.target.style.transform = "rotate(90deg)";
     }, 100);
+
+    order(recipes.find((r) => r.id === e.target.dataset.id));
 }
 
 function createMenu() {
     createCategories();
+    recipes.map((r) => createRecipes(r));
     recipes.map((r) => createRecipes(r));
     //add recipes to each category
 }
@@ -115,13 +123,15 @@ function createCategories() {
 }
 
 function createRecipes(recipe) {
-    let thisRecipe;
-    if (recipe.category === "Bauturi" || recipe.category === "Garnituri") {
-        thisRecipe = secondaryCardConstructor(recipe);
-    } else {
-        thisRecipe = mainCardConstructor(recipe);
+    if (recipe.availability) {
+        let thisRecipe;
+        if (recipe.category === "Bauturi" || recipe.category === "Garnituri") {
+            thisRecipe = secondaryCardConstructor(recipe);
+        } else {
+            thisRecipe = mainCardConstructor(recipe);
+        }
+        $(`.${recipe.category}`).innerHTML += thisRecipe;
     }
-    $(`.${recipe.category}`).innerHTML += thisRecipe;
 }
 
 const mainCardConstructor = (recipe) => {
@@ -129,51 +139,43 @@ const mainCardConstructor = (recipe) => {
         <div class="picture"><img src="../Media/Pictures/${recipe.img}.jpg"></div>
         <div class="content">
             <h1>${recipe.name}</h1>
-        </div>
-    </div>`;
+            ${
+                recipe.category !== "Desert"
+                    ? `<p class ="ingredients">
+            <span>Ingredients:</span> <br />
+            ${recipe.ingredients}
+            </p>`
+                    : ""
+            }
+            
+            <div class="info">
+                <div class="infoText">
+                    <div class="pill">${recipe.price} Lei</div>
+                        <div class="infoDetails">
+                            <div class="pill">${recipe.eta} minute</div>
+                            <div class="pill">${recipe.weight}gr</div>
+                        </div>
+                    </div>
+                    <div class="add" data-id="${recipe.id}"></div>
+                </div>
+            </div>
+         </div>`;
 };
 
 const secondaryCardConstructor = (recipe) => {
-    return `<div> </div>`;
+    return `
+    <div class="smallCard">
+        <div class="content">
+            <h1>${recipe.name}</h1>
+            <div class="info">
+                <div class="infoText">
+                    <div class="pill">${recipe.price} Lei</div>
+                    <div class="infoDetails">
+                        <div class="pill">${recipe.weight}gr</div>
+                    </div>
+                </div>
+                <div class="add" data-id="${recipe.id}"></div>
+            </div>
+        </div>
+    </div>`;
 };
-
-/*
-                    <!-- <div class="mainCard">
-                            <div class="picture"></div>
-                            <div class="content">
-                                <h1>Pizza Quattro Staggioni</h1>
-                                <p class="ingredients">
-                                    <span>Ingredients:</span> <br />
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Adipisci odit tempore sint similique expedita nesciunt,
-                                    quibusdam reiciendis cupiditate, consectetur autem cum sit
-                                    consequuntur dolor illum, ex inventore labore corporis
-                                    explicabo?
-                                </p>
-                                <div class="info">
-                                    <div class="infoText">
-                                        <div class="price center">35 Lei</div>
-                                        <div class="infoDetails">
-                                            <div class="eta center">25 minutes</div>
-                                            <div class="weight center">450gr</div>
-                                        </div>
-                                    </div>
-                                    <div class="add"></div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                    <!-- <div class="smallCard">
-                            <div class="content">
-                                <h1>Pina Colada</h1>
-                                <div class="info">
-                                    <div class="infoText">
-                                        <div class="price center">35 Lei</div>
-                                        <div class="infoDetails">
-                                            <div class="weight center">450gr</div>
-                                        </div>
-                                    </div>
-                                    <div class="add"></div>
-                                </div>
-                            </div>
-                        </div> -->*/

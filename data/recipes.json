@@ -8,7 +8,7 @@
         "weight": 450,
         "price": 35,
         "ingredients": "blat, sos, ciuperci, șuncă presată, bacon, salam, mozzarella, măsline",
-        "img": "pizzaQS"
+        "img": "pizzaDemo"
     },
     {
         "id": "2",
@@ -19,7 +19,7 @@
         "weight": 450,
         "price": 36,
         "ingredients": "blat, sos, brânză feta, brânză cu mucegai, parmezan, mozzarella, roșii cherry",
-        "img": "https___www.gandul.ro_wp-content_uploads_2014_09_13173075_1-piza"
+        "img": "pizzaQF"
     },
     {
         "id": "3",
@@ -294,7 +294,7 @@
         "weight": 340,
         "price": 29,
         "ingredients": "piept pui,ciuperci,smantana,orez",
-        "img": ""
+        "img": "Easy-Creamy-Chicken-Mushroom-Recipe-Keto-7"
     },
     {
         "id": "28",
@@ -305,7 +305,7 @@
         "weight": 340,
         "price": 29,
         "ingredients": "piept pui,ciuperci,smantana,sos de soia",
-        "img": "Easy-Creamy-Chicken-Mushroom-Recipe-Keto-7"
+        "img": "shutterstock_72121441"
     },
     {
         "id": "29",

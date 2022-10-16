@@ -21,6 +21,7 @@ body {
     width: 100vw;
     background-color: #1a0808;
     position: relative;
+    overflow: hidden;
 }
 
 section {
@@ -60,7 +61,7 @@ header img {
 
 .categoryTab {
     width: calc(100% - 1rem);
-    height: 2rem;
+    height: 2.5rem;
     border-radius: 999px;
     background-color: rgb(77, 18, 18);
     display: flex;
@@ -144,7 +145,7 @@ main::-webkit-scrollbar {
 
 footer {
     width: 100%;
-    height: 4rem;
+    height: 5rem;
     padding: 1rem .5rem;
     background-color: #521010;
 }
@@ -186,7 +187,10 @@ footer input {
 
 .checkNumber {
     flex: 1;
+    font-size: 2rem;
+    font-weight: bold;
 
+    color: #521010;
 }
 
 .check {
@@ -212,7 +216,6 @@ footer input {
 }
 
 .picture {
-    min-height: 6rem;
     height: 6rem;
     width: 6rem;
     border-radius: 0.25rem;
@@ -222,12 +225,12 @@ footer input {
 .picture img {
     height: 100%;
     width: 100%;
-    align-items: center;
-    justify-items: center;
+    object-fit: cover;
+    object-position: center;
 }
 
 .content {
-    width: 100%;
+    flex: 1;
     margin-left: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -268,14 +271,14 @@ footer input {
     gap: 0.3rem;
 }
 
-.weight,
-.price,
-.eta {
+.pill {
+    display: flex;
     flex: 1;
     width: 100%;
     background-color: bisque;
     border-radius: 999px;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
 }
 
@@ -309,7 +312,7 @@ footer input {
 
 .mainCardExpanded .picture {
     width: 100%;
-    height: 10rem;
+    height: 15rem;
 }
 
 .mainCardExpanded .ingredients {
@@ -325,6 +328,10 @@ footer input {
 
 .mainCardExpanded .add {
     height: 5rem;
+}
+
+.mainCardExpanded .content {
+    width: 100%;
 }
 
 /*---- secondary card --- */
@@ -358,40 +365,39 @@ footer input {
 
 .checkWindow {
     position: absolute;
+    top: 0;
     height: 100vh;
     width: 100vw;
     z-index: 10000;
     background-color: #1a0808c4;
     padding: 2rem 1rem;
+    transition: .5s;
 }
 
 .checkWindowHidden {
-    top: -100%;
+    top: 200%;
 }
 
 .checkTable {
+    padding: 1rem;
     height: 100%;
     width: 100%;
-    background-color: whitesmoke;
+    background-color: rgb(241, 234, 215);
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-.total {
-    height: 3rem;
-    background-color: yellowgreen;
-}
 
 .checkHeader {
     width: 100%;
     height: 4rem;
-    background-color: #521010;
-    background-image: url('../Media/UI/logo.svg');
+    background-image: url('../Media/UI/logoDark.svg');
     background-position: center;
-    background-size: 30%;
+    background-size: 40%;
     background-repeat: no-repeat;
+    border-bottom: 7px dotted orangered;
 }
 
 .mainCheck {
@@ -400,18 +406,84 @@ footer input {
     font-display: flex;
     flex-direction: column;
     padding: .5rem;
+    border-bottom: 7px dotted orangered;
 }
 
 .checkFooter {
+    margin-top: 1rem;
     width: 100%;
     height: 5rem;
-    background-color: aqua;
+    display: flex;
 }
 
 .checkCard {
     width: 100%;
     height: 4rem;
-    background-color: violet;
-    border-radius: .5rem;
+    border: 2px solid brown;
+    border-radius: 1rem;
     display: flex;
+    padding: .5rem;
+}
+
+.checkTitle {
+    flex: 1;
+    height: 100%;
+    font-size: 2rem;
+}
+
+.tipWindow {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.tipWindow span {
+    margin-left: 2rem;
+    font-size: 1.5rem;
+}
+
+.checkPrice, .checkValue {
+    height: 100%;
+    aspect-ratio: 3/2;
+    font-size: 2rem;
+}
+
+.total {
+    height: 3;
+    display: flex;
+    font-size: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid brown;
+    border-radius: 1rem;
+    margin-top: .5rem;
+
+}
+
+.selectTip {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.closeCheck {
+    height: 100%;
+    aspect-ratio: 1;
+    background-image: url(../Media/UI/closeButton.svg);
+    background-size: cover;
+}
+
+.tipPercentage {
+    padding: .5rem;
+    background-color: brown;
+    border-radius: 999px;
+    color: white;
+    font-weight: bold;
+}
+
+.tipPercentageSelected {
+    background-color: orangered;
+    color: white;
 }
