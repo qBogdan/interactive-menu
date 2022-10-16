@@ -6,20 +6,12 @@ function $$(selector) {
     return document.querySelectorAll(selector);
 } // query selector all helper function, returns array of elements
 
-const div = () => document.createElement("dic"); // create div shortcut
+const div = () => document.createElement("div"); // create div shortcut
 
 // common fetch and request js
 
 let recipes;
-const categories = [
-    "Paste",
-    "Pizza",
-    "Preparate din Pui",
-    "Preparate de Vita",
-    "Garnituri",
-    "Desert",
-    "Bauturi",
-];
+const categories = ["Pizza", "Paste", "Pui", "Garnituri", "Bauturi", "Desert"];
 
 const alergens = [
     {

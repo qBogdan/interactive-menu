@@ -19,7 +19,7 @@
         "weight": 450,
         "price": 36,
         "ingredients": "blat, sos, brânză feta, brânză cu mucegai, parmezan, mozzarella, roșii cherry",
-        "img": "pizzaQS"
+        "img": "https___www.gandul.ro_wp-content_uploads_2014_09_13173075_1-piza"
     },
     {
         "id": "3",
@@ -30,7 +30,7 @@
         "weight": 420,
         "price": 32,
         "ingredients": "blat, sos, ciuperci, șuncă presată, salam, mozzarella, măsline",
-        "img": "pizzaQS"
+        "img": "pizza-4-stagioni--449891p695427"
     },
     {
         "id": "4",
@@ -41,7 +41,7 @@
         "weight": 400,
         "price": 33,
         "ingredients": "blat, sos, ciuperci, ton, capere, ceapă roșie, mozzarella, măsline",
-        "img": "pizzaQS"
+        "img": "15196-DE-pizza-tonno-e-cipolla-pic1.jpg-W1440xH1200R1"
     },
     {
         "id": "5",
@@ -52,7 +52,7 @@
         "weight": 450,
         "price": 29,
         "ingredients": "blat, sos, ciuperci, roșii, porumb, ceapă roșie, ardei, măsline, mozzarella",
-        "img": "pizzaQS"
+        "img": "descărcare"
     },
     {
         "id": "6",
@@ -63,7 +63,7 @@
         "weight": 450,
         "price": 33,
         "ingredients": "blat, sos, șuncă presată, ananas, mozzarella",
-        "img": "pizzaQS"
+        "img": "18"
     },
     {
         "id": "7",
@@ -129,7 +129,7 @@
         "weight": 150,
         "price": 15,
         "ingredients": "",
-        "img": ""
+        "img": "Lava-cake-cu-inima-de-ciocolata-cu-lapte"
     },
     {
         "id": "13",
@@ -140,7 +140,7 @@
         "weight": 150,
         "price": 16,
         "ingredients": "",
-        "img": ""
+        "img": "descărcare (1)"
     },
     {
         "id": "14",
@@ -151,7 +151,7 @@
         "weight": 200,
         "price": 18,
         "ingredients": "",
-        "img": ""
+        "img": "reteta-de-papanasi-08"
     },
     {
         "id": "15",
@@ -162,7 +162,7 @@
         "weight": 100,
         "price": 10,
         "ingredients": "",
-        "img": ""
+        "img": "maxresdefault"
     },
     {
         "id": "16",
@@ -173,7 +173,7 @@
         "weight": 150,
         "price": 20,
         "ingredients": "",
-        "img": ""
+        "img": "descărcare (2)"
     },
     {
         "id": "17",
@@ -184,7 +184,7 @@
         "weight": 150,
         "price": 20,
         "ingredients": "",
-        "img": ""
+        "img": "berry_yogurt_mousse_cake_main"
     },
     {
         "id": "18",
@@ -195,7 +195,7 @@
         "weight": 350,
         "price": 25,
         "ingredients": "paste,bacon,parmezan,smantana,ou",
-        "img": ""
+        "img": "recipe-image-legacy-id-1001491_11-2e0fa5c"
     },
     {
         "id": "19",
@@ -206,7 +206,7 @@
         "weight": 400,
         "price": 28,
         "ingredients": "paste,ciuperci,sunca,sos rosii,parmesan",
-        "img": ""
+        "img": "images"
     },
     {
         "id": "20",
@@ -217,7 +217,7 @@
         "weight": 300,
         "price": 24,
         "ingredients": "rosii,usturoi,busuioc,ulei masline,parmesan",
-        "img": ""
+        "img": "descărcare (3)"
     },
     {
         "id": "21",
@@ -228,7 +228,7 @@
         "weight": 320,
         "price": 30,
         "ingredients": "mix fructe de mare,usturoi,patrunjel,rosii,paprika",
-        "img": ""
+        "img": "spaghetti-ai-frutti-di-mare_"
     },
     {
         "id": "22",
@@ -288,7 +288,7 @@
     {
         "id": "27",
         "name": "Pui cu Ciuperci",
-        "category": "Preparate din Pui",
+        "category": "Pui",
         "availability": true,
         "eta": 20,
         "weight": 340,
@@ -299,34 +299,34 @@
     {
         "id": "28",
         "name": "Piept de pui in sos de soia",
-        "category": "Preparate din Pui",
+        "category": "Pui",
         "availability": true,
         "eta": 20,
         "weight": 340,
         "price": 29,
         "ingredients": "piept pui,ciuperci,smantana,sos de soia",
-        "img": ""
+        "img": "Easy-Creamy-Chicken-Mushroom-Recipe-Keto-7"
     },
     {
         "id": "29",
         "name": "Pui cu sos de rosii si mozzarella",
-        "category": "Preparate din Pui",
+        "category": "Pui",
         "availability": true,
         "eta": 20,
         "weight": 340,
         "price": 29,
         "ingredients": "piept pui,ciuperci,smantana,sos de soia",
-        "img": ""
+        "img": "30-minute-chicken-caprese-skillet-1-"
     },
     {
         "id": "30",
         "name": "Aripioare de pui la cuptor cu cartofi",
-        "category": "Preparate din Pui",
+        "category": "Pui",
         "availability": true,
         "eta": 20,
         "weight": 340,
         "price": 29,
         "ingredients": "piept pui,ciuperci,smantana,sos de soia",
-        "img": ""
+        "img": "Aripioare-si-cartofi-la-cuptor-cu-iaurt-marar-si-usturoi-1"
     }
 ]
