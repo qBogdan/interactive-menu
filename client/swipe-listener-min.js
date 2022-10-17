@@ -3,7 +3,8 @@ var _extends =
         Object.assign ||
         function (a) {
             for (var b, c = 1; c < arguments.length; c++)
-                for (var d in ((b = arguments[c]), b)) Object.prototype.hasOwnProperty.call(b, d) && (a[d] = b[d]);
+                for (var d in ((b = arguments[c]), b))
+                    Object.prototype.hasOwnProperty.call(b, d) && (a[d] = b[d]);
             return a;
         },
     SwipeListener = function (a, b) {
@@ -15,7 +16,10 @@ var _extends =
                         var c = document.createEvent("CustomEvent");
                         return c.initCustomEvent(a, b.bubbles, b.cancelable, b.detail), c;
                     }
-                    return "function" != typeof window.CustomEvent && void ((a.prototype = window.Event.prototype), (window.CustomEvent = a));
+                    return (
+                        "function" != typeof window.CustomEvent &&
+                        void ((a.prototype = window.Event.prototype), (window.CustomEvent = a))
+                    );
                 })();
             b || (b = {}),
                 (b = _extends(
@@ -43,7 +47,10 @@ var _extends =
                 g = function (a) {
                     d && ((a.changedTouches = [{ clientX: a.clientX, clientY: a.clientY }]), i(a));
                 };
-            b.mouse && (a.addEventListener("mousedown", e), a.addEventListener("mouseup", f), a.addEventListener("mousemove", g));
+            b.mouse &&
+                (a.addEventListener("mousedown", e),
+                a.addEventListener("mouseup", f),
+                a.addEventListener("mousemove", g));
             var h = function (d) {
                     var e = Math.abs,
                         f = Math.max,
@@ -78,9 +85,11 @@ var _extends =
                         if (
                             (e(t) >= b.minHorizontal &&
                                 ("left" == u
-                                    ? ((v = e(w - j[j.length - 1])), v <= b.deltaHorizontal && (l.left = !0))
+                                    ? ((v = e(w - j[j.length - 1])),
+                                      v <= b.deltaHorizontal && (l.left = !0))
                                     : "right" == u
-                                    ? ((v = e(x - j[j.length - 1])), v <= b.deltaHorizontal && (l.right = !0))
+                                    ? ((v = e(x - j[j.length - 1])),
+                                      v <= b.deltaHorizontal && (l.right = !0))
                                     : void 0),
                             (t = k[0] - k[k.length - 1]),
                             (u = "none"),
@@ -89,21 +98,32 @@ var _extends =
                             (x = f.apply(Math, k)),
                             e(t) >= b.minVertical &&
                                 ("top" == u
-                                    ? ((v = e(w - k[k.length - 1])), v <= b.deltaVertical && (l.top = !0))
+                                    ? ((v = e(w - k[k.length - 1])),
+                                      v <= b.deltaVertical && (l.top = !0))
                                     : "bottom" == u
-                                    ? ((v = e(x - k[k.length - 1])), v <= b.deltaVertical && (l.bottom = !0))
+                                    ? ((v = e(x - k[k.length - 1])),
+                                      v <= b.deltaVertical && (l.bottom = !0))
                                     : void 0),
                             ((c = []), l.top || l.right || l.bottom || l.left))
                         ) {
                             b.lockAxis &&
                                 ((l.left || l.right) && e(i - n) > e(o - p)
                                     ? (l.top = l.bottom = !1)
-                                    : (l.top || l.bottom) && e(i - n) < e(o - p) && (l.left = l.right = !1));
-                            var y = { detail: _extends({ directions: l, touch: h, target: d.target }, q) },
+                                    : (l.top || l.bottom) &&
+                                      e(i - n) < e(o - p) &&
+                                      (l.left = l.right = !1));
+                            var y = {
+                                    detail: _extends(
+                                        { directions: l, touch: h, target: d.target },
+                                        q
+                                    ),
+                                },
                                 z = new CustomEvent("swipe", y);
                             a.dispatchEvent(z);
                         } else {
-                            var A = new CustomEvent("swipecancel", { detail: _extends({ touch: h, target: d.target }, q) });
+                            var A = new CustomEvent("swipecancel", {
+                                detail: _extends({ touch: h, target: d.target }, q),
+                            });
                             a.dispatchEvent(A);
                         }
                     }
@@ -117,7 +137,13 @@ var _extends =
                             h = c[0].y,
                             i = c[c.length - 1].y,
                             j = {
-                                detail: { x: [f, g], y: [h, i], touch: "function" == typeof TouchEvent && d instanceof TouchEvent, target: d.target },
+                                detail: {
+                                    x: [f, g],
+                                    y: [h, i],
+                                    touch:
+                                        "function" == typeof TouchEvent && d instanceof TouchEvent,
+                                    target: d.target,
+                                },
                             },
                             k = new CustomEvent("swiping", j);
                         a.dispatchEvent(k);
@@ -130,10 +156,12 @@ var _extends =
                         j = { passive: !b.preventScroll };
                     },
                 });
-                window.addEventListener("testPassive", null, k), window.removeEventListener("testPassive", null, k);
+                window.addEventListener("testPassive", null, k),
+                    window.removeEventListener("testPassive", null, k);
             } catch (a) {}
             return (
-                b.touch && (a.addEventListener("touchmove", i, j), a.addEventListener("touchend", h)),
+                b.touch &&
+                    (a.addEventListener("touchmove", i, j), a.addEventListener("touchend", h)),
                 {
                     off: function () {
                         a.removeEventListener("touchmove", i, j),

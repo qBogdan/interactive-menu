@@ -35,9 +35,11 @@ header {
     width: 100%;
     height: 4rem;
     background: rgb(195, 78, 0);
-    background: radial-gradient(circle at 50% 180%,
-            rgba(195, 78, 0, 1) 0%,
-            rgba(64, 15, 5, 1) 100%);
+    background: radial-gradient(
+        circle at 50% 180%,
+        rgba(195, 78, 0, 1) 0%,
+        rgba(64, 15, 5, 1) 100%
+    );
     position: relative;
     box-shadow: 0px 5px 5px rgb(59, 3, 3);
 }
@@ -146,7 +148,7 @@ main::-webkit-scrollbar {
 footer {
     width: 100%;
     height: 5rem;
-    padding: 1rem .5rem;
+    padding: 1rem 0.5rem;
     background-color: #521010;
 }
 
@@ -181,8 +183,6 @@ footer input {
     border-radius: 999px;
     background-color: white;
     display: flex;
-
-
 }
 
 .checkNumber {
@@ -204,10 +204,12 @@ footer input {
 
 .mainCard {
     background-color: sienna;
-    background: linear-gradient(45deg,
-            rgb(24, 11, 12) 0%,
-            rgb(112, 4, 4) 80%,
-            rgb(209, 58, 58) 100%);
+    background: linear-gradient(
+        45deg,
+        rgb(24, 11, 12) 0%,
+        rgb(112, 4, 4) 80%,
+        rgb(209, 58, 58) 100%
+    );
     width: 100%;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -338,10 +340,12 @@ footer input {
 
 .smallCard {
     background-color: sienna;
-    background: linear-gradient(45deg,
-            rgb(24, 11, 12) 0%,
-            rgb(112, 4, 4) 80%,
-            rgb(209, 58, 58) 100%);
+    background: linear-gradient(
+        45deg,
+        rgb(24, 11, 12) 0%,
+        rgb(112, 4, 4) 80%,
+        rgb(209, 58, 58) 100%
+    );
     width: 100%;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -356,7 +360,6 @@ footer input {
 /* media query */
 
 @media only screen and (min-width: 600px) {
-
     .mainCard,
     .smallCard {
         width: 45%;
@@ -371,7 +374,7 @@ footer input {
     z-index: 10000;
     background-color: #1a0808c4;
     padding: 2rem 1rem;
-    transition: .5s;
+    transition: 0.5s;
 }
 
 .checkWindowHidden {
@@ -389,11 +392,10 @@ footer input {
     overflow: hidden;
 }
 
-
 .checkHeader {
     width: 100%;
     height: 4rem;
-    background-image: url('../Media/UI/logoDark.svg');
+    background-image: url("../Media/UI/logoDark.svg");
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
@@ -405,7 +407,7 @@ footer input {
     flex: 1;
     font-display: flex;
     flex-direction: column;
-    padding: .5rem;
+    padding: 0.5rem;
     border-bottom: 7px dotted orangered;
 }
 
@@ -418,17 +420,19 @@ footer input {
 
 .checkCard {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     border: 2px solid brown;
     border-radius: 1rem;
     display: flex;
-    padding: .5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
 }
 
 .checkTitle {
     flex: 1;
     height: 100%;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 .tipWindow {
@@ -443,10 +447,27 @@ footer input {
     font-size: 1.5rem;
 }
 
-.checkPrice, .checkValue {
+.checkValue {
     height: 100%;
-    aspect-ratio: 3/2;
-    font-size: 2rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    font-size: 1.5rem;
+    background-color: rgb(148, 223, 50);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.checkPrice {
+    height: 100%;
+    width: auto;
+    font-size: 1.5rem;
+    background-color: orange;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .total {
@@ -458,8 +479,7 @@ footer input {
     padding: 1rem;
     border: 2px solid brown;
     border-radius: 1rem;
-    margin-top: .5rem;
-
+    margin-top: 0.5rem;
 }
 
 .selectTip {
@@ -476,7 +496,7 @@ footer input {
 }
 
 .tipPercentage {
-    padding: .5rem;
+    padding: 0.5rem;
     background-color: brown;
     border-radius: 999px;
     color: white;
@@ -486,4 +506,12 @@ footer input {
 .tipPercentageSelected {
     background-color: orangered;
     color: white;
+}
+
+.totalValue {
+    background-color: orange;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
 }

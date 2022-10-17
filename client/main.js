@@ -1,10 +1,6 @@
 let page = 0;
-let orderList = [];
-let touchStart,
-    touchEnd = 0;
 var container = document.querySelector("main");
 var listener = SwipeListener(container);
-
 function mainInitEvents() {
     createMenu();
     $$(".mainCard").forEach((card) => {
