@@ -1,10 +1,25 @@
 let page = 0;
-var container = document.querySelector("main");
-var listener = SwipeListener(container);
-function mainInitEvents() {
-    createMenu();
-    $$(".mainCard").forEach((card) => {
-        card.addEventListener("click", (e) => {
+const container = document.querySelector("main");
+const listener = SwipeListener(container);
+
+function menuInit(recipes) {
+    filterMenu(recipes);
+    createMenu(filterMenu(recipes), [...new Set(recipes.map(r => r.category))]);
+    initEvents();
+}
+
+function filterMenu(recipes) {
+    let menuRecipes = {};
+    let categories = [...new Set(recipes.map(r => r.category))];
+    categories.forEach(ct => {
+        menuRecipes[ct] = recipes.filter(r => r.category === ct);
+    });
+    return menuRecipes;
+}
+
+function initEvents() {
+    $$(".mainCard").forEach(card => {
+        card.addEventListener("click", e => {
             if (e.target.matches(".add")) {
                 addItem(e);
             } else {
@@ -13,7 +28,7 @@ function mainInitEvents() {
         });
     });
 
-    $("main").addEventListener("swipe", (e) => {
+    $("main").addEventListener("swipe", e => {
         let directions = e.detail.directions;
 
         if (directions.left) {
@@ -25,15 +40,15 @@ function mainInitEvents() {
         }
     });
 
-    $$(".smallCard").forEach((card) => {
-        card.addEventListener("click", (e) => {
+    $$(".smallCard").forEach(card => {
+        card.addEventListener("click", e => {
             if (e.target.matches(".add")) {
                 addItem(e);
             }
         });
     });
 
-    $(".categoryTab").addEventListener("click", (e) => {
+    $(".categoryTab").addEventListener("click", e => {
         if (e.target.matches(".arrow")) {
             changeCategory(e.target.dataset.direction);
         }
@@ -74,15 +89,15 @@ function checkSwipe() {
 
 function changeCategoryTitle() {
     const index = Math.abs(page);
-    const categories = $$(".category");
-    $(".categoryTitle").innerText = categories[index].dataset.name;
+    const categoryTabs = $$(".category");
+    $(".categoryTitle").innerText = categoryTabs[index].dataset.name;
 }
 
 function expandCard(card) {
     if (card.matches(".mainCardExpanded")) {
         card.classList.remove("mainCardExpanded");
     } else {
-        $$(".mainCard").forEach((card) => {
+        $$(".mainCard").forEach(card => {
             card.classList.remove("mainCardExpanded");
         });
         card.classList.toggle("mainCardExpanded");
@@ -99,18 +114,17 @@ function addItem(e) {
         e.target.style.transform = "rotate(90deg)";
     }, 100);
 
-    order(recipes.find((r) => r.id === e.target.dataset.id));
+    order(recipes.find(r => r.id === e.target.dataset.id));
 }
 
-function createMenu() {
-    createCategories();
-    recipes.map((r) => createRecipes(r));
-    recipes.map((r) => createRecipes(r));
-    //add recipes to each category
+function createMenu(recipes, categories) {
+    createCategories(categories);
+    addRecipes(recipes, categories);
+    addRecipes(recipes, categories);
 }
 
-function createCategories() {
-    categories.forEach((cat) => {
+function createCategories(categories) {
+    categories.forEach(cat => {
         const newCat = div();
         newCat.classList.add(cat, "category");
         newCat.dataset.name = cat;
@@ -118,60 +132,40 @@ function createCategories() {
     });
 }
 
-function createRecipes(recipe) {
-    if (recipe.availability) {
-        let thisRecipe;
-        if (recipe.category === "Bauturi" || recipe.category === "Garnituri") {
-            thisRecipe = secondaryCardConstructor(recipe);
-        } else {
-            thisRecipe = mainCardConstructor(recipe);
-        }
-        $(`.${recipe.category}`).innerHTML += thisRecipe;
-    }
+function addRecipes(recipes, categories) {
+    categories.forEach(cat => {
+        let htmlElements = "";
+        recipes[cat].forEach(r => {
+            htmlElements += mainCardConstructor(r);
+        });
+        $(`.${cat}`).innerHTML += htmlElements;
+    });
 }
 
-const mainCardConstructor = (recipe) => {
-    return `<div class="mainCard">
-        <div class="picture"><img src="../Media/Pictures/${recipe.img}.jpg"></div>
-        <div class="content">
-            <h1>${recipe.name}</h1>
-            ${
-                recipe.category !== "Desert"
-                    ? `<p class ="ingredients">
-            <span>Ingredients:</span> <br />
-            ${recipe.ingredients}
-            </p>`
-                    : ""
-            }
-            
-            <div class="info">
-                <div class="infoText">
-                    <div class="pill">${recipe.price} Lei</div>
-                        <div class="infoDetails">
-                            <div class="pill">${recipe.eta} minute</div>
-                            <div class="pill">${recipe.weight}gr</div>
-                        </div>
-                    </div>
-                    <div class="add" data-id="${recipe.id}"></div>
-                </div>
-            </div>
-         </div>`;
-};
-
-const secondaryCardConstructor = (recipe) => {
+const mainCardConstructor = recipe => {
     return `
-    <div class="smallCard">
-        <div class="content">
-            <h1>${recipe.name}</h1>
-            <div class="info">
-                <div class="infoText">
-                    <div class="pill">${recipe.price} Lei</div>
+<div class="mainCard">
+    ${recipe.img === "" ? "" : `<div class="picture"><img src="../Media/Pictures/${recipe.img}.jpg"></div>`}
+    <div class="content">
+        <h1>${recipe.name}</h1>
+        ${
+            recipe.ingredients === ""
+                ? ""
+                : `<p class ="ingredients">
+                    <span>Ingredients:</span> <br />
+                    ${recipe.ingredients}
+                </p>`
+        }
+        <div class="info">
+            <div class="infoText">
+                <div class="pill">${recipe.price} Lei</div>
                     <div class="infoDetails">
+                        ${recipe.eta === 0 ? "" : `<div class="pill">${recipe.eta} minute</div>`} 
                         <div class="pill">${recipe.weight}gr</div>
                     </div>
                 </div>
                 <div class="add" data-id="${recipe.id}"></div>
             </div>
         </div>
-    </div>`;
+</div>`;
 };
