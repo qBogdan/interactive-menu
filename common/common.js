@@ -7,4 +7,3 @@ function $$(selector) {
 } // query selector all helper function, returns array of elements
 
 const div = () => document.createElement("div"); // create div shortcut
-let recipes;

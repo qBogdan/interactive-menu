@@ -37,8 +37,10 @@ function loadRecipes() {
     fetch(API.READ.URL)
         .then(list => list.json())
         .then(r => {
-            recipes = r;
-            menuInit(recipes);
+            const recipes = r;
+            const availableRecipes = recipes.filter(r => r.availability === true);
+            const categories = [...new Set(availableRecipes.map(r => r.category))];
+            menuInit(availableRecipes, categories);
         });
 }
 

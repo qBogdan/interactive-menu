@@ -407,8 +407,10 @@ footer input {
     flex: 1;
     font-display: flex;
     flex-direction: column;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     border-bottom: 7px dotted orangered;
+    overflow: scroll;
+    
 }
 
 .checkFooter {
@@ -420,19 +422,29 @@ footer input {
 
 .checkCard {
     width: 100%;
-    height: 3rem;
     border: 2px solid brown;
     border-radius: 1rem;
     display: flex;
+    flex-direction: column;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     gap: 0.5rem;
 }
 
+.checkWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .checkTitle {
     flex: 1;
     height: 100%;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: brown;
+    border-bottom: 2px solid brown;
 }
 
 .tipWindow {
@@ -447,16 +459,35 @@ footer input {
     font-size: 1.5rem;
 }
 
+.plusOrder,
+.minusOrder {
+    height: 100%;
+    width: 2rem;
+    padding: 1.3rem;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+
+.minusOrder {
+    background-image: url(../Media/UI/minusBtn.svg);
+}
+
+.plusOrder {
+    background-image: url(../Media/UI/plusBtn.svg);
+}
+
 .checkValue {
     height: 100%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-
+    width: 5rem;
+    border-radius: 999px;
     font-size: 1.5rem;
     background-color: rgb(148, 223, 50);
     padding: 0.5rem;
     display: flex;
+    margin: 0 .5rem;
     align-items: center;
+    justify-content: center;
 }
 
 .checkPrice {
@@ -468,6 +499,7 @@ footer input {
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
+    margin-left:auto
 }
 
 .total {
