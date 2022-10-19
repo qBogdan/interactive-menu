@@ -8,26 +8,25 @@ function order(recipe) {
 
 function addOrder(recipe) {
     const orderedRecipe = { ...recipe };
-    if (orderList.findIndex(r => r.id === recipe.id) >= 0) {
-        orderList[orderList.findIndex(r => r.id === orderedRecipe.id)].qty++;
+    if (orderList.findIndex((r) => r.id === recipe.id) >= 0) {
+        orderList[orderList.findIndex((r) => r.id === orderedRecipe.id)].qty++;
     } else {
         orderedRecipe.qty = 1;
         orderList.push(orderedRecipe);
     }
     orderQty++;
-    $(".checkNumber").innerText = orderQty;
 }
 
 function displayOrder() {
     $(".mainCheck").innerHTML = "";
-    orderList.map(r => ($(".mainCheck").innerHTML += orderCardConstructor(r)));
+    orderList.map((r) => ($(".mainCheck").innerHTML += orderCardConstructor(r)));
     $(".totalValue").innerText = `${calculateTotal()} Lei`;
-    $(".checkNumber").innerText = orderQty;
+    $(".checkNumber").innerText = `${calculateTotal()} Lei`;
 }
 
 function calculateTotal() {
     let total = 0;
-    orderList.map(r => (total += r.qty * r.price));
+    orderList.map((r) => (total += r.qty * r.price));
     return total;
 }
 function orderCardConstructor(recipe) {
@@ -45,16 +44,20 @@ function orderCardConstructor(recipe) {
 }
 
 function changeOrder(e) {
-    const thisRecipe = orderList.find(r => r.id === e.target.dataset.id);
+    const thisRecipe = orderList.find((r) => r.id === e.target.dataset.id);
     if (e.target.matches(".minusOrder")) {
         thisRecipe.qty--;
         orderQty--;
         if (thisRecipe.qty === 0) {
-            orderList = orderList.filter(r => r.id !== thisRecipe.id);
+            orderList = orderList.filter((r) => r.id !== thisRecipe.id);
         }
     } else if (e.target.matches(".plusOrder")) {
         thisRecipe.qty++;
         orderQty++;
     }
     displayOrder();
+}
+
+function addTip(percent) {
+    console.log(tip);
 }

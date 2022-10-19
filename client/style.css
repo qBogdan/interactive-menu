@@ -150,46 +150,17 @@ footer {
     height: 5rem;
     padding: 1rem 0.5rem;
     background-color: #521010;
-}
-
-.searchIcon {
-    height: 100%;
-    aspect-ratio: 1;
-    background-color: white;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    background-image: url("../Media/UI/searchIcon.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50%;
-}
-
-footer input {
-    border-top-right-radius: 999px;
-    border-bottom-right-radius: 999px;
-    height: 100%;
-    flex: 1;
-    padding: 1rem;
-    margin-right: 0.5rem;
     display: flex;
-    border: none;
-    resize: none;
-    outline: none;
-}
-
-.checkInfo {
-    height: 100%;
-    aspect-ratio: 2/1;
-    border-radius: 999px;
-    background-color: white;
-    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
 }
 
 .checkNumber {
-    flex: 1;
+    border-radius: 999px;
+    width: 100%;
     font-size: 2rem;
     font-weight: bold;
-
+    background-color: white;
     color: #521010;
 }
 
@@ -198,6 +169,50 @@ footer input {
     aspect-ratio: 1;
     background-image: url("../Media/UI/dishIcon.svg");
     background-size: cover;
+}
+
+.searchIcon {
+    height: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-image: url("../Media/UI/searchIcon.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50%;
+}
+
+.categoryTab input {
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    background-color: transparent;
+    padding: 1rem;
+    margin-right: 0.5rem;
+    display: flex;
+    border: none;
+    resize: none;
+    outline: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.categoryTab input::placeholder {
+    color: burlywood;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.checkInfo {
+    height: 100%;
+    aspect-ratio: 2/1;
+    border-radius: 999px;
+    background-color: white;
+    display: flex;
 }
 
 /* --- main card ---*/
@@ -378,7 +393,7 @@ footer input {
 }
 
 .checkWindowHidden {
-    top: 200%;
+    top: 250%;
 }
 
 .checkTable {
@@ -410,7 +425,6 @@ footer input {
     padding: 0.5rem 0;
     border-bottom: 7px dotted orangered;
     overflow: scroll;
-    
 }
 
 .checkFooter {
@@ -468,7 +482,6 @@ footer input {
     background-size: cover;
 }
 
-
 .minusOrder {
     background-image: url(../Media/UI/minusBtn.svg);
 }
@@ -485,7 +498,7 @@ footer input {
     background-color: rgb(148, 223, 50);
     padding: 0.5rem;
     display: flex;
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
     align-items: center;
     justify-content: center;
 }
@@ -499,7 +512,7 @@ footer input {
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
-    margin-left:auto
+    margin-left: auto;
 }
 
 .total {

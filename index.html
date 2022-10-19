@@ -25,10 +25,10 @@
                     <div class="tipWindow">
                         <span>Add tip</span>
                         <div class="selectTip">
-                            <div class="tipPercentage">+0%</div>
-                            <div class="tipPercentage tipPercentageSelected">+5%</div>
-                            <div class="tipPercentage">+10%</div>
-                            <div class="tipPercentage">+15%</div>
+                            <div data-percentage="0" class="tipPercentage">+0%</div>
+                            <div data-percentage="5" class="tipPercentage tipPercentageSelected">+5%</div>
+                            <div data-percentage="10" class="tipPercentage">+10%</div>
+                            <div data-percentage="15" class="tipPercentage">+15%</div>
                         </div>
                     </div>
                     <div class="closeCheck"></div>
@@ -43,7 +43,8 @@
             </header>
             <div class="categoryTab">
                 <div class="arrow leftArrow" data-direction="left"></div>
-                <div class="categoryTitle">Pizza</div>
+                <div class="searchIcon"></div>
+                <input type="search" id="search" id="search" />
                 <div class="arrow rightArrow" data-direction="right"></div>
             </div>
 
@@ -51,13 +52,9 @@
                 <div class="categoryWrapper"></div>
             </main>
 
-            <footer class="center">
-                <div class="searchIcon"></div>
-                <input type="text" placeholder="Cauta ..." id="search" />
-                <div class="checkInfo">
-                    <div class="checkNumber center">0</div>
-                    <div class="check"></div>
-                </div>
+            <footer>
+                <div class="checkNumber center">0</div>
+                <div class="check"></div>
             </footer>
         </section>
     </body>

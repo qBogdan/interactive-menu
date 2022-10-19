@@ -4,20 +4,20 @@ const listener = SwipeListener(container);
 
 function menuInit(recipes, categories) {
     createMenu(filterMenu(recipes, categories), categories);
-    initEvents(recipes);
+    initEvents(recipes, categories);
 }
 
 function filterMenu(recipes, categories) {
     let menuRecipes = {};
-    categories.forEach(ct => {
-        menuRecipes[ct] = recipes.filter(r => r.category === ct);
+    categories.forEach((ct) => {
+        menuRecipes[ct] = recipes.filter((r) => r.category === ct);
     });
     return menuRecipes;
 }
 
-function initEvents(recipes) {
-    $$(".mainCard").forEach(card => {
-        card.addEventListener("click", e => {
+function initEvents(recipes, categories) {
+    $$(".mainCard").forEach((card) => {
+        card.addEventListener("click", (e) => {
             if (e.target.matches(".add")) {
                 addItem(e, recipes);
             } else {
@@ -26,7 +26,7 @@ function initEvents(recipes) {
         });
     });
 
-    $("main").addEventListener("swipe", e => {
+    $("main").addEventListener("swipe", (e) => {
         let directions = e.detail.directions;
 
         if (directions.left) {
@@ -38,21 +38,21 @@ function initEvents(recipes) {
         }
     });
 
-    $$(".smallCard").forEach(card => {
-        card.addEventListener("click", e => {
+    $$(".smallCard").forEach((card) => {
+        card.addEventListener("click", (e) => {
             if (e.target.matches(".add")) {
                 addItem(e, recipes);
             }
         });
     });
 
-    $(".categoryTab").addEventListener("click", e => {
+    $(".categoryTab").addEventListener("click", (e) => {
         if (e.target.matches(".arrow")) {
             changeCategory(e.target.dataset.direction);
         }
     });
 
-    $(".checkInfo").addEventListener("click", () => {
+    $(".check").addEventListener("click", () => {
         showCheckout();
     });
 
@@ -60,8 +60,12 @@ function initEvents(recipes) {
         $(".checkWindow").classList.add("checkWindowHidden");
     });
 
-    $(".mainCheck").addEventListener("click", e => {
+    $(".mainCheck").addEventListener("click", (e) => {
         changeOrder(e);
+    });
+
+    $("#search").addEventListener("input", (e) => {
+        search(e.target.value, recipes, categories);
     });
 }
 
@@ -91,19 +95,18 @@ function checkSwipe() {
 
 function changeCategoryTitle() {
     const index = Math.abs(page);
-    const categoryTabs = $$(".category");
-    $(".categoryTitle").innerText = categoryTabs[index].dataset.name;
+    $("#search").placeholder = $$(".category")[index].dataset.name;
 }
 
 function expandCard(card) {
     if (card.matches(".mainCardExpanded")) {
         card.classList.remove("mainCardExpanded");
     } else {
-        $$(".mainCard").forEach(card => {
+        $$(".mainCard").forEach((card) => {
             card.classList.remove("mainCardExpanded");
         });
         card.classList.toggle("mainCardExpanded");
-        card.scrollIntoView({ block: "center", behavior: "smooth" });
+        card.scrollIntoView({ block: "nearest", behavior: "smooth" });
     }
 }
 
@@ -116,17 +119,17 @@ function addItem(e, recipes) {
         e.target.style.transform = "rotate(90deg)";
     }, 100);
 
-    order(recipes.find(r => r.id === e.target.dataset.id));
+    order(recipes.find((r) => r.id === e.target.dataset.id));
 }
 
 function createMenu(recipes, categories) {
     createCategories(categories);
-    addRecipes(recipes, categories);
+    $("#search").placeholder = categories[0];
     addRecipes(recipes, categories);
 }
 
 function createCategories(categories) {
-    categories.forEach(cat => {
+    categories.forEach((cat) => {
         const newCat = div();
         newCat.classList.add(cat, "category");
         newCat.dataset.name = cat;
@@ -135,19 +138,23 @@ function createCategories(categories) {
 }
 
 function addRecipes(recipes, categories) {
-    categories.forEach(cat => {
+    categories.forEach((cat) => {
         let htmlElements = "";
-        recipes[cat].forEach(r => {
+        recipes[cat].forEach((r) => {
             htmlElements += mainCardConstructor(r);
         });
         $(`.${cat}`).innerHTML += htmlElements;
     });
 }
 
-const mainCardConstructor = recipe => {
+const mainCardConstructor = (recipe) => {
     return `
 <div class="mainCard">
-    ${recipe.img === "" ? "" : `<div class="picture"><img src="../Media/Pictures/${recipe.img}.jpg"></div>`}
+    ${
+        recipe.img === ""
+            ? ""
+            : `<div class="picture"><img src="../Media/Pictures/${recipe.img}.jpg"></div>`
+    }
     <div class="content">
         <h1>${recipe.name}</h1>
         ${
@@ -171,3 +178,28 @@ const mainCardConstructor = recipe => {
         </div>
 </div>`;
 };
+
+function search(input, recipes, categories) {
+    const category = categories[Math.abs(page)];
+    const search = recipes.filter(
+        (r) =>
+            r.name.toLowerCase().includes(input.toLowerCase()) ||
+            r.ingredients.toLowerCase().includes(input.toLowerCase())
+    );
+    if (input.length > 0) displaySearch(search, category);
+    else
+        displaySearch(
+            recipes.filter((r) => r.category === category),
+            category
+        );
+}
+
+function displaySearch(recipes, selector) {
+    let htmlElements = "";
+    $(`.${selector}`).innerHTML = htmlElements;
+
+    recipes.forEach((r) => {
+        htmlElements += mainCardConstructor(r);
+    });
+    $(`.${selector}`).innerHTML = htmlElements;
+}
