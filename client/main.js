@@ -150,11 +150,7 @@ function addRecipes(recipes, categories) {
 const mainCardConstructor = (recipe) => {
     return `
 <div class="mainCard">
-    ${
-        recipe.img === ""
-            ? ""
-            : `<div class="picture"><img src="../Media/Pictures/${recipe.img}.jpg"></div>`
-    }
+    ${recipe.img === "" ? "" : `<div class="picture"><img src="Media/Pictures/${recipe.img}.jpg"></div>`}
     <div class="content">
         <h1>${recipe.name}</h1>
         ${
@@ -182,9 +178,7 @@ const mainCardConstructor = (recipe) => {
 function search(input, recipes, categories) {
     const category = categories[Math.abs(page)];
     const search = recipes.filter(
-        (r) =>
-            r.name.toLowerCase().includes(input.toLowerCase()) ||
-            r.ingredients.toLowerCase().includes(input.toLowerCase())
+        (r) => r.name.toLowerCase().includes(input.toLowerCase()) || r.ingredients.toLowerCase().includes(input.toLowerCase())
     );
     if (input.length > 0) displaySearch(search, category);
     else
