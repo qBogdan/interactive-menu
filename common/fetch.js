@@ -23,10 +23,10 @@ demo = true;
 
 const inLineChanges = demo;
 if (demo) {
-    API.READ.URL = "../data/recipes.json";
-    API.DELETE.URL = "../data/delete.json";
-    API.CREATE.URL = "../data/create.json";
-    API.UPDATE.URL = "../data/update.json";
+    API.READ.URL = "data/recipes.json";
+    API.DELETE.URL = "data/delete.json";
+    API.CREATE.URL = "data/create.json";
+    API.UPDATE.URL = "data/update.json";
 
     API.DELETE.METHOD = "GET";
     API.CREATE.METHOD = "GET";
@@ -35,11 +35,11 @@ if (demo) {
 
 function loadRecipes() {
     fetch(API.READ.URL)
-        .then(list => list.json())
-        .then(r => {
+        .then((list) => list.json())
+        .then((r) => {
             const recipes = r;
-            const availableRecipes = recipes.filter(r => r.availability === true);
-            const categories = [...new Set(availableRecipes.map(r => r.category))];
+            const availableRecipes = recipes.filter((r) => r.availability === true);
+            const categories = [...new Set(availableRecipes.map((r) => r.category))];
             menuInit(availableRecipes, categories);
         });
 }
@@ -55,8 +55,8 @@ function createRecipe(recipe) {
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
     })
-        .then(res => res.json())
-        .then(r => {
+        .then((res) => res.json())
+        .then((r) => {
             if (r.success) {
                 if (inLineChanges) {
                     recipe.id = `demoID${date.getTime()}`;
@@ -80,11 +80,11 @@ function updateRecipe(recipe) {
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
     })
-        .then(res => res.json())
-        .then(r => {
+        .then((res) => res.json())
+        .then((r) => {
             if (r.success) {
                 if (inLineChanges) {
-                    const update = recipes.find(r => r.id === recipe.id);
+                    const update = recipes.find((r) => r.id === recipe.id);
                     for (let key in update) {
                         update[key] = recipe[key];
                     }
@@ -108,12 +108,12 @@ function deleteRecipe(delId) {
         },
         body: method === "GET" ? null : JSON.stringify({ id: delId }),
     })
-        .then(res => res.json())
-        .then(r => {
+        .then((res) => res.json())
+        .then((r) => {
             console.log(r);
             if (r.success) {
                 if (inLineChanges) {
-                    recipes = recipes.filter(r => r.id !== delId);
+                    recipes = recipes.filter((r) => r.id !== delId);
                     // reload display
                 } else {
                     loadRecipes();
