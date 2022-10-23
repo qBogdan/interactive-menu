@@ -8,8 +8,8 @@ function order(recipe) {
 
 function addOrder(recipe) {
     const orderedRecipe = { ...recipe };
-    if (orderList.findIndex((r) => r.id === recipe.id) >= 0) {
-        orderList[orderList.findIndex((r) => r.id === orderedRecipe.id)].qty++;
+    if (orderList.findIndex(r => r.id === recipe.id) >= 0) {
+        orderList[orderList.findIndex(r => r.id === orderedRecipe.id)].qty++;
     } else {
         orderedRecipe.qty = 1;
         orderList.push(orderedRecipe);
@@ -19,14 +19,14 @@ function addOrder(recipe) {
 
 function displayOrder() {
     $(".mainCheck").innerHTML = "";
-    orderList.map((r) => ($(".mainCheck").innerHTML += orderCardConstructor(r)));
-    $(".totalValue").innerText = `${calculateTotal()} Lei`;
-    $(".checkNumber").innerText = `${calculateTotal()} Lei`;
+    orderList.map(r => ($(".mainCheck").innerHTML += orderCardConstructor(r)));
+
+    displayTip();
 }
 
 function calculateTotal() {
     let total = 0;
-    orderList.map((r) => (total += r.qty * r.price));
+    orderList.map(r => (total += r.qty * r.price));
     return total;
 }
 function orderCardConstructor(recipe) {
@@ -43,13 +43,22 @@ function orderCardConstructor(recipe) {
     `;
 }
 
+function tipCardConstructor(percentage, totalTip) {
+    return `
+    <div class="tipCard">
+        <div class="checkTitleTitle"> + ${percentage}% tip </div>
+        <div class="checkPrice">${totalTip} Lei</div>
+    </div>
+    `;
+}
+
 function changeOrder(e) {
-    const thisRecipe = orderList.find((r) => r.id === e.target.dataset.id);
+    const thisRecipe = orderList.find(r => r.id === e.target.dataset.id);
     if (e.target.matches(".minusOrder")) {
         thisRecipe.qty--;
         orderQty--;
         if (thisRecipe.qty === 0) {
-            orderList = orderList.filter((r) => r.id !== thisRecipe.id);
+            orderList = orderList.filter(r => r.id !== thisRecipe.id);
         }
     } else if (e.target.matches(".plusOrder")) {
         thisRecipe.qty++;
@@ -58,6 +67,22 @@ function changeOrder(e) {
     displayOrder();
 }
 
-function addTip(percent) {
-    console.log(tip);
+function addTip(e) {
+    $$(".tipPercentage").forEach(tip => {
+        tip.classList.remove("tipPercentageSelected");
+    });
+    e.target.classList.add("tipPercentageSelected");
+    displayOrder();
+}
+
+function displayTip() {
+    const percentage = $(".tipPercentageSelected").dataset.percentage;
+    const total = calculateTotal();
+    const totalTip = Math.floor((total * percentage) / 100);
+    const totalPrice = total + totalTip;
+
+    if (percentage > 0) $(".mainCheck").innerHTML += tipCardConstructor(percentage, totalTip);
+
+    $(".totalValue").innerText = `${totalPrice} Lei`;
+    $(".checkNumber").innerText = `${totalPrice} Lei`;
 }

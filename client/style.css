@@ -560,3 +560,20 @@ footer {
     display: flex;
     align-items: center;
 }
+
+.tipCard {
+    border: 2px solid brown;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: brown;
+    padding: .5rem;
+
+}
+
+.tipCard .checkPrice {
+    color: black;
+}

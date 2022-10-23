@@ -1,40 +1,181 @@
-html {
-  height: 100%;
-}
-body {
+*, *::after, *::before {
   margin: 0;
-  min-height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
 }
-#top-menu-bar {
-  margin: 0;
+
+header{
+  width: 100%;
+  padding: 1rem;
+  background-color: brown;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header h1{
+  color: bisque;
+  margin-bottom: 1rem;
+}
+
+.searchBar {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar input {
+  height: 100%;
+  width: 40%;
+  border: none;
+  outline: none;
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  text-indent: 1rem;
+}
+
+header .icon {
+  background-image: url("../Media/UI/searchIcon.svg");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 100% ;
+  aspect-ratio: 1;
+  background-color: white;
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.categories {
+  width: 100%;
+  padding: .5rem;
+  background-color: brown;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.category {
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: .5rem;
+  background-color: bisque;
+}
+
+.category:hover {
+  background-color: antiquewhite;
+  transform: scale(1.05);
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: orangered;
+  border-radius: 999px;
+}
+
+main::-webkit-scrollbar-track {
+  background-color: aqua;
+}
+
+footer {
+  width: 100%;
+  background-color: brown;
+  padding: 1rem;
+}
+
+.utility {
+  width: 100%;
+  padding: .5rem;
+}
+
+.addRecipe {
+  width: 100%;
+  background-color: bisque;
+  padding: .5rem;
+  border-radius: .5rem;
   text-align: center;
-  background-color: #334455;
-  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.174);
+  margin-bottom: .5rem;
 }
-#top-menu-bar li {
-  display: inline;
-  margin: 0%;
-  padding: 0%;
+
+.sort {
+  width: 100%;
+  background-color: brown;
+  border-radius: .5rem;
+  display: flex;
+  padding: .5rem;
 }
-#top-menu-bar a {
-  text-decoration: none;
-  padding: 5px 15px 5px 15px;
-  margin: 4px 0;
-  color: #fff;
-  display: inline-block;
-  border-radius: 5px;
+
+.sortType {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
-#top-menu-bar a:visited {
-  color: #fff;
+
+.sortType .icon {
+  height: 1rem;
+  aspect-ratio: 1;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-#top-menu-bar a:hover {
-  color: #8c5a10;
-  background: #fff;
+
+.sortType .icon:hover {
+  transform: scale(1.1);
 }
-#top-menu-bar a.active {
-  color: #334455;
-  background: rgb(209, 125, 47);
+
+/* card */
+
+.card {
+  display: flex;
+  align-items: center;
+  padding: .5rem;
+  border-radius: .5rem;
+  background-color: bisque;
+  width: 100%;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.284);
 }
+
+.card img {
+  height: 3rem;
+  aspect-ratio: 1;
+}
+
+.card h2,
+.nameSort {
+  flex: 1;
+}
+
+.card .weight,
+.weightSort {
+  width: 10%;
+}
+
+.card .price,
+priceSort {
+  width: 10%;
+}
+
+.card .check,
+.availabilitySort {
+  width: 10%;
+}
+
