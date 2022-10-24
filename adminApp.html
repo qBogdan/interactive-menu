@@ -1,56 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="common/common.js" defer></script>
-        <script src="admin/fetch.js" defer></script>
-        <script src="admin/main.js"></script>
-        <link rel="stylesheet" href="admin/style.css" />
-        <title>Admin application</title>
-    </head>
-    <body>
-        <header>
-            <h1>Nume Restaurant</h1>
-            <div class="searchBar">
-                <div class="icon"></div>
-                <input type="search" name="search" id="search" placeholder="Cauta ...">
-            </div>
-        </header>
-        <section class="categories">
-            <div class="category" data-category="all">All</div>
-        </section>
-        <section class="utility">
-            <div class="addRecipe">Adauga</div>
-            <div class="sort">
-                <div class="sortType nameSort">
-                    <div class="icon">A</div>
-                    <div class="icon">Z</div>
-                </div>
-                <div class="sortType weightSort">
-                    <div class="icon"></div>
-                    <div class="icon"></div>
-                </div>
-                <div class="sortType priceSort">
-                    <div class="icon"></div>
-                    <div class="icon"></div>
-                </div>
-                <div class="sortType availabilitySort">
-                    <div class="icon"></div>
-                    <div class="icon"></div>
-                </div>
-            </div>
-        </section>
-        <main>
-            <div class="card">
-                <img src="Media/Pictures/pizzaDemo.jpg" alt="">
-                <h2>Title</h2><div class="weight">100gr</div>
-                <div class="price">12 Lei</div>
-                <input type="checkbox" name="avaible" id="">
-            </div>
-        </main>
-        <footer>Last update : Time stamp</footer>
-        
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="common/common.js" defer></script>
+    <script src="admin/fetch.js" defer></script>
+    <script src="admin/main.js"></script>
+    <link rel="stylesheet" href="admin/style.css" />
+    <title>Admin application</title>
+  </head>
+  <body>
+    <header>
+      <h1>Nume Restaurant</h1>
+      <div class="searchBar">
+        <div class="icon"></div>
+        <input
+          type="search"
+          name="search"
+          id="search"
+          placeholder="Cauta ..."
+        />
+      </div>
+    </header>
+    <section id="categories">
+      <div class="category" data-category="all">All</div>
+    </section>
+    <section class="utility">
+      <div class="addRecipe">Adauga</div>
+      <div class="sort">
+        <div class="sortType nameSort">
+          <div class="icon">A</div>
+          <div class="icon">Z</div>
+        </div>
+        <div class="sortType weightSort">
+          <div class="icon"></div>
+          <div class="icon"></div>
+        </div>
+        <div class="sortType priceSort">
+          <div class="icon"></div>
+          <div class="icon"></div>
+        </div>
+        <div class="sortType availabilitySort">
+          <div class="icon"></div>
+          <div class="icon"></div>
+        </div>
+      </div>
+    </section>
+    <main>
+      <div class="card">
+        <img src="Media/Pictures/pizzaDemo.jpg" alt="" />
+        <h2>Title</h2>
+        <div class="weight">100gr</div>
+        <div class="price">12 Lei</div>
+        <input type="checkbox" name="avaible" id="" />
+      </div>
+    </main>
+    <footer>Last update : Time stamp</footer>
+  </body>
 </html>
