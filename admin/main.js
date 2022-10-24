@@ -5,7 +5,6 @@ function adminInit(recipes, categories) {
 
 function displayCategories(categories) {
     // adauga butoane pentru fiecare categorie
-    console.log(categories);
     categories.forEach(cat => {
         const thisCat = div();
         thisCat.classList.add("category");
@@ -16,12 +15,13 @@ function displayCategories(categories) {
 }
 
 function initEvents() {
+    // adds active class to selected category
     $(".categories").addEventListener("click", e => {
         if (e.target.matches(".category")) {
             $$(".category").forEach(btn => {
                 btn.classList.remove("activeCategory");
             });
-            e.targe.classList.add("activeCategory");
+            e.target.classList.add("activeCategory");
         }
     });
 }

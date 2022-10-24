@@ -183,3 +183,8 @@ priceSort {
   background-color: orangered;
   color: white;
 }
+
+.activeCategory:hover {
+  background-color: orange;
+  color: white;
+}
