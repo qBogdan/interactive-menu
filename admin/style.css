@@ -179,3 +179,7 @@ priceSort {
   width: 10%;
 }
 
+.activeCategory {
+  background-color: orangered;
+  color: white;
+}
