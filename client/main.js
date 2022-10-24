@@ -16,16 +16,6 @@ function filterMenu(recipes, categories) {
 }
 
 function initEvents(recipes, categories) {
-    // $$(".mainCard").forEach(card => {
-    //     card.addEventListener("click", e => {
-    //         if (e.target.matches(".add")) {
-    //             addItem(e, recipes);
-    //         } else {
-    //             expandCard(card);
-    //         }
-    //     });
-    // });
-
     $(".categoryWrapper").addEventListener("click", e => {
         if (e.target.matches(".add")) {
             addItem(e, recipes);

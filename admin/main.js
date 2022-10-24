@@ -1,10 +1,12 @@
 function adminInit(recipes, categories) {
+    console.log(categories);
     displayCategories(categories);
     initEvents();
 }
 
 function displayCategories(categories) {
     // adauga butoane pentru fiecare categorie
+    console.log(categories);
     categories.forEach(cat => {
         const thisCat = div();
         thisCat.classList.add("category");
