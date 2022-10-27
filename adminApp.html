@@ -27,7 +27,54 @@
       <div class="category activeCategory" data-category="all">All</div>
     </section>
     <section class="utility">
-      <div class="addRecipe">Adauga</div>
+      <div class="addRecipe">
+        <button class="addNewRecipe">Adauga</button>
+        <form action="" method="post" id="form">
+          <div>
+            <input type="file" accept="image/*" onchange="loadFile(event)" />
+            <p><img id="output" width="200" /></p>
+            <script>
+              var loadFile = function (event) {
+                var image = document.getElementById("output");
+                image.src = URL.createObjectURL(event.target.files[0]);
+              };
+            </script>
+
+            <label for="name">Name</label>
+            <input type="name" name="name" id="name" />
+
+            <label for="weight">Gramaj</label>
+            <input type="weight" name="weight" id="weight" />
+            <br />
+            <label for="price">Pret</label>
+            <input type="price" name="price" id="price" />
+            <br />
+            <textarea name="ingredients" id="ingredients" cols="65" rows="3">
+Ingrediente</textarea
+            >
+          </div>
+
+          <label for="category">Categorii</label>
+          <select name="domain" id="domain">
+            <option>Please choose an category</option>
+            <option>Pizza</option>
+            <option>Bauturi</option>
+            <option>Desert</option>
+            <option>Paste</option>
+            <option>Garnituri</option>
+            <option>Pui</option>
+          </select>
+
+          <div class="save-cancel-reset-btn">
+            <button class="add_btn" id="save-btn">Save</button>
+            <button class="add_btn" id="cancel-btn" type="button">
+              Cancel
+            </button>
+            <button class="add-btn" id="reset-btn">Reset</button>
+          </div>
+        </form>
+      </div>
+
       <div class="sort">
         <div class="sortType nameSort">
           <div class="icon">A</div>
