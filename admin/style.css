@@ -11,6 +11,7 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 header {
@@ -83,6 +84,7 @@ main {
   width: 100%;
   padding: 1rem;
   overflow-y: scroll;
+  
 }
 
 main::-webkit-scrollbar-thumb {
@@ -160,11 +162,15 @@ footer {
   background-color: bisque;
   width: 100%;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.284);
+  margin-bottom: .5rem;
 }
 
 .card img {
   height: 6rem;
   aspect-ratio: 1;
+  background-color: brown;
+  object-fit: cover;
+  border-radius: .5rem;
 }
 
 .card h2,
@@ -185,7 +191,7 @@ priceSort {
 
 .card .check,
 .availabilitySort {
-  width: 10%;
+  width: 15%;
 }
 
 .activeCategory {
@@ -195,4 +201,71 @@ priceSort {
 .activeCategory:hover {
   background-color: orangered;
   color: white;
+}
+
+.card .availability {
+  height: 2rem;
+  aspect-ratio: 1;
+  background-color: rgb(40, 74, 74);
+}
+
+/* -------- FORM --------- */
+
+.formContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(58, 6, 6, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer form {
+  width: 60%;
+  background-color: bisque;
+  border-radius: .5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.topInputs {
+  display: flex;
+  width: 100%;
+}
+
+.columnInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  width: 100%;
+}
+
+.rowInputWrapper {
+  width: 100%;
+  display: flex;
+  gap: .2rem;
+  justify-content: space-between;
+}
+.rowInputWrapper input {
+  flex: 1;
+}
+
+#imgInput {
+  height: 6rem;
+  aspect-ratio: 1;
+  background-color: aqua;
+  background-position: center;
+  background-size: cover;
+}
+
+#uploadInput::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: end;
 }
