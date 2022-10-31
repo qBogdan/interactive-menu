@@ -17,7 +17,6 @@ const API = {
     },
 };
 
-let editId;
 //const demo = location.host === "qbogdan.github.io" ? true : false;
 demo = true;
 

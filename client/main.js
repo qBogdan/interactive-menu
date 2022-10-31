@@ -152,7 +152,7 @@ function addRecipes(recipes, categories) {
 const mainCardConstructor = recipe => {
     return `
 <div class="mainCard">
-    ${recipe.img === "" ? "" : `<div class="picture"><img src="Media/Pictures/${recipe.img}.jpg"></div>`}
+    ${recipe.img === "" ? "" : `<div class="picture"><img src="${recipe.img}"></div>`}
     <div class="content">
         <h1>${recipe.name}</h1>
         ${

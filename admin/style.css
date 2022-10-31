@@ -261,11 +261,26 @@ priceSort {
   background-size: cover;
 }
 
-#uploadInput::-webkit-file-upload-button {
+#imgInput::after {
+  content: "Select file";
+}
+
+#imgInput::-webkit-file-upload-button {
   visibility: hidden;
 }
 
 .formButtons {
   display: flex;
   justify-content: end;
+  gap: .5rem;
+}
+
+.preview {
+  height: 5rem;
+  width: 5rem;
+}
+
+.prevImg {
+  width: 100%;
+  height:100%;
 }

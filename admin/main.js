@@ -1,3 +1,5 @@
+let editId;
+
 function adminInit(recipes, categories) {
     displayCategories(categories);
     addCategoryOptions(categories);
@@ -29,6 +31,8 @@ function initEvents(recipes) {
 
     $(".addNewRecipe").addEventListener("click", e => {
         $(".formContainer").style.display = "flex";
+        editId = false;
+        $(".delete").style.display = "none";
     });
 
     $(".close").addEventListener("click", e => {
@@ -37,19 +41,33 @@ function initEvents(recipes) {
 
     $("main").addEventListener("click", e => {
         if (e.target.closest(".card")) {
-            console.log(e.target.closest(".card").dataset.id);
             displayRecipe(e.target.closest(".card").dataset.id, recipes);
         }
     });
+
+    $("#imgInput").addEventListener("change", useImage);
+
+    $("#form").addEventListener("submit", submintForm);
 }
 
-adminInit();
+function submintForm(e) {
+    e.preventDefault();
+    if (editId) {
+        console.log("will edit object");
+    } else {
+        console.log("will create new Object");
+    }
+}
+
+function useImage(e) {
+    e.target.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
+}
 
 function cardConstructor(recipe) {
     // creaza structura html pentru carduri
     return `
     <div class="card" data-id="${recipe.id}">
-        <img src="${recipe.img === "" ? `Media/UI/logo.svg` : `Media/Pictures/${recipe.img}.jpg`}">
+        <img src="${recipe.img === "" ? `Media/UI/logo.svg` : `${recipe.img}`}">
         <h2>${recipe.name}</h2>
         <div class="weight">${recipe.weight} gr</div>
         <div class="price">${recipe.price} Lei</div>
@@ -72,7 +90,8 @@ function displayRecipes(recipes) {
 function displayRecipe(id, recipes) {
     // afiseaza formularul cu informatiile retetei
     const thisRecipe = recipes.find(r => r.id === id); // gaseste reteta in array
-
+    $(".delete").style.display = "block";
+    editId = id;
     for (let key in thisRecipe) {
         // itereaza fiecare proprietate a obiectului
         if (key !== "id") {
