@@ -1,4 +1,5 @@
 let editId;
+let base64string;
 
 function adminInit(recipes, categories) {
     displayCategories(categories);
@@ -60,7 +61,20 @@ function submintForm(e) {
 }
 
 function useImage(e) {
-    e.target.style.backgroundImage = `url(${URL.createObjectURL(e.target.files[0])})`;
+    const file = e.target.files[0];
+    //e.target.style.backgroundImage = `url(${base64string})`;
+    getBase64(e, file);
+}
+
+function getBase64(e, file) {
+    const reader = new FileReader();
+    let base64string;
+    reader.onloadend = () => {
+        base64string = reader.result;
+        console.log(base64string);
+    };
+    reader.readAsDataURL(file);
+    console.log(base64string);
 }
 
 function cardConstructor(recipe) {
@@ -96,9 +110,7 @@ function displayRecipe(id, recipes) {
         // itereaza fiecare proprietate a obiectului
         if (key !== "id") {
             if (key === "img") {
-                $(`#${key}Input`).style.backgroundImage = `url(${
-                    thisRecipe[key] === "" ? `Media/UI/logo.svg` : `Media/Pictures/${thisRecipe[key]}.jpg`
-                }`;
+                $(`#${key}Input`).style.backgroundImage = `url(${thisRecipe[key] === "" ? `Media/UI/logo.svg` : `${thisRecipe[key]}`}`;
             } else if (key === "availability") {
                 $(`#${key}Input`).checked = thisRecipe[key];
             } else {
