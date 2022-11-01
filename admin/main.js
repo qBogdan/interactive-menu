@@ -132,39 +132,3 @@ function addCategoryOptions(categories) {
     });
     $("#categoryInput").innerHTML = categoryOptions;
 }
-
-/*<script>
-      var loadFile = function (event) {
-        var image = document.getElementById("output");
-        image.src = URL.createObjectURL(event.target.files[0]);
-      };
-    </script>
-    
-    
- 
-async function createRecipe(baseRecipe) {
-  const recipe = {...baseRecipe, image: await getBase64(YOURFILE)};
-    const method = API.CREATE.METHOD;
-    const date = new Date();
-
-    fetch(API.CREATE.URL, {
-        method,
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: method === "GET" ? null : JSON.stringify(recipe),
-    })
-        .then(res => res.json())
-        .then(r => {
-            if (r.success) {
-                if (inLineChanges) {
-                    recipe.id = `demoID${date.getTime()}`;
-                    recipes.push(recipe);
-                    //reload display
-                    console.log(recipes);
-                } else {
-                    loadRecipes();
-                }
-            }
-        });
-}*/
