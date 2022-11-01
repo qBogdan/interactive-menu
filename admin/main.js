@@ -10,7 +10,7 @@ function adminInit(recipes, categories) {
 
 function displayCategories(categories, recipes) {
     // adauga butoane pentru fiecare categorie
-    categories.forEach(cat => {
+    categories.forEach((cat) => {
         const thisCat = div();
         thisCat.classList.add("category");
         thisCat.innerText = cat;
@@ -21,26 +21,28 @@ function displayCategories(categories, recipes) {
 
 function initEvents(recipes) {
     // adds active class to selected category
-    $(".categories").addEventListener("click", e => {
+    $(".categories").addEventListener("click", (e) => {
         if (e.target.matches(".category")) {
-            $$(".category").forEach(btn => {
+            $$(".category").forEach((btn) => {
                 btn.classList.remove("activeCategory");
             });
             e.target.classList.add("activeCategory");
         }
     });
 
-    $(".addNewRecipe").addEventListener("click", e => {
+    $(".addNewRecipe").addEventListener("click", (e) => {
         $(".formContainer").style.display = "flex";
         editId = false;
+        $("#form").reset();
+        $("#imgInput").style.backgroundImage = `none`;
         $(".delete").style.display = "none";
     });
 
-    $(".close").addEventListener("click", e => {
+    $(".close").addEventListener("click", (e) => {
         $(".formContainer").style.display = "none";
     });
 
-    $("main").addEventListener("click", e => {
+    $("main").addEventListener("click", (e) => {
         if (e.target.closest(".card")) {
             displayRecipe(e.target.closest(".card").dataset.id, recipes);
         }
@@ -60,21 +62,21 @@ function submintForm(e) {
     }
 }
 
-function useImage(e) {
+async function useImage(e) {
     const file = e.target.files[0];
-    //e.target.style.backgroundImage = `url(${base64string})`;
-    getBase64(e, file);
+    const base64string = await getBase64(file);
+    e.target.style.backgroundImage = `url(${base64string})`;
 }
 
-function getBase64(e, file) {
-    const reader = new FileReader();
-    let base64string;
-    reader.onloadend = () => {
-        base64string = reader.result;
-        console.log(base64string);
-    };
-    reader.readAsDataURL(file);
-    console.log(base64string);
+function getBase64(file) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        let base64string;
+        reader.onloadend = () => {
+            resolve(reader.result);
+        };
+        reader.readAsDataURL(file);
+    });
 }
 
 function cardConstructor(recipe) {
@@ -94,7 +96,7 @@ function displayRecipes(recipes) {
     // creaza structura html pentru fiecare reteta din lista si injecteaza finalul in DOM
     let recipesHtml = "";
     $("main").innerHTML = recipesHtml;
-    recipes.forEach(r => {
+    recipes.forEach((r) => {
         recipesHtml += cardConstructor(r);
     });
 
@@ -103,7 +105,7 @@ function displayRecipes(recipes) {
 
 function displayRecipe(id, recipes) {
     // afiseaza formularul cu informatiile retetei
-    const thisRecipe = recipes.find(r => r.id === id); // gaseste reteta in array
+    const thisRecipe = recipes.find((r) => r.id === id); // gaseste reteta in array
     $(".delete").style.display = "block";
     editId = id;
     for (let key in thisRecipe) {
@@ -125,7 +127,7 @@ function displayRecipe(id, recipes) {
 function addCategoryOptions(categories) {
     // adauga optiunile de categorii din formularul de creare
     let categoryOptions;
-    categories.forEach(cat => {
+    categories.forEach((cat) => {
         categoryOptions += `<option>${cat}</option>`;
     });
     $("#categoryInput").innerHTML = categoryOptions;
@@ -136,4 +138,33 @@ function addCategoryOptions(categories) {
         var image = document.getElementById("output");
         image.src = URL.createObjectURL(event.target.files[0]);
       };
-    </script>*/
+    </script>
+    
+    
+ 
+async function createRecipe(baseRecipe) {
+  const recipe = {...baseRecipe, image: await getBase64(YOURFILE)};
+    const method = API.CREATE.METHOD;
+    const date = new Date();
+
+    fetch(API.CREATE.URL, {
+        method,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: method === "GET" ? null : JSON.stringify(recipe),
+    })
+        .then(res => res.json())
+        .then(r => {
+            if (r.success) {
+                if (inLineChanges) {
+                    recipe.id = `demoID${date.getTime()}`;
+                    recipes.push(recipe);
+                    //reload display
+                    console.log(recipes);
+                } else {
+                    loadRecipes();
+                }
+            }
+        });
+}*/
