@@ -1,286 +1,309 @@
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 header {
-  width: 100%;
-  padding: 1rem;
-  background-color: rgb(55, 52, 52);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgb(55, 52, 52);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header h1 {
-  color: bisque;
-  margin-bottom: 1rem;
+    color: bisque;
+    margin-bottom: 1rem;
 }
 
 .searchBar {
-  width: 100%;
-  height: 2rem;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .searchBar input {
-  height: 100%;
-  width: 40%;
-  border: none;
-  outline: none;
-  border-top-right-radius: 999px;
-  border-bottom-right-radius: 999px;
-  text-indent: 1rem;
+    height: 100%;
+    width: 40%;
+    border: none;
+    outline: none;
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    text-indent: 1rem;
 }
 
-header .icon {
-  background-image: url("../Media/UI/searchIcon.svg");
-  background-size: 50%;
-  background-position: center;
-  background-repeat: no-repeat;
+header .searchIcon {
+    background-image: url("../Media/UI/searchIcon.svg");
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
 
-  height: 100%;
-  aspect-ratio: 1;
-  background-color: white;
-  border-top-left-radius: 999px;
-  border-bottom-left-radius: 999px;
+    height: 100%;
+    aspect-ratio: 1;
+    background-color: white;
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
 }
 
 .categories {
-  width: 100%;
-  padding: 0.5rem;
-  background-color: rgb(180, 174, 171);
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgb(180, 174, 171);
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .category {
-  cursor: pointer;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.5rem;
-  background-color: bisque;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: bisque;
 }
 
 .category:hover {
-  background-color: antiquewhite;
-  transform: scale(1.05);
+    background-color: antiquewhite;
+    transform: scale(1.05);
 }
 
 main {
-  flex: 1;
-  width: 100%;
-  padding: 1rem;
-  overflow-y: scroll;
-  
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+    overflow-y: scroll;
 }
 
 main::-webkit-scrollbar-thumb {
-  background-color: orangered;
-  border-radius: 999px;
+    background-color: orangered;
+    border-radius: 999px;
 }
 
 main::-webkit-scrollbar-track {
-  background-color: aqua;
+    background-color: aqua;
 }
 
 footer {
-  width: 100%;
+    width: 100%;
 
-  background-color: rgb(55, 52, 52);
-  padding: 1rem;
+    background-color: rgb(55, 52, 52);
+    padding: 1rem;
 }
 
 .utility {
-  width: 100%;
-  padding: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
 }
 
 .addRecipe {
-  width: 100%;
+    width: 100%;
 
-  background-color: rgb(157, 187, 24);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  text-align: center;
+    background-color: rgb(157, 187, 24);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
 
-  font-size: 1.6rem;
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.174);
-  margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.174);
+    margin-bottom: 0.5rem;
 }
 
 .sort {
-  width: 100%;
+    width: 100%;
 
-  background-color: rgb(55, 52, 52);
+    background-color: rgb(55, 52, 52);
 
-  border-radius: 0.5rem;
-  display: flex;
-  padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    padding: 0.5rem;
 }
 
 .sortType {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .sortType .icon {
-  height: 1rem;
-  aspect-ratio: 1;
-  background-color: blanchedalmond;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+    height: 1rem;
+    aspect-ratio: 1;
+    background-color: blanchedalmond;
+    background-image: url("../Media/UI/arrow.svg");
+    background-size: cover;
+    display: flex;
+    border-radius: 0.2rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-.sortType .icon:hover {
-  background-color: antiquewhite;
-  transform: scale(1.1);
+.icon:first-child {
+    transform: rotate(180deg);
+}
+
+.nameSort .iconA {
+    height: 1rem;
+    aspect-ratio: 1;
+    background-color: blanchedalmond;
+    background-size: cover;
+    display: flex;
+    border-radius: 0.2rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sortType .icon:hover,
+.iconA:hover {
+    background-color: antiquewhite;
+    transform: scale(1.1);
+}
+.icon:first-child:hover {
+    transform: scale(1.1) rotate(180deg);
 }
 
 /* card */
 
 .card {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  background-color: bisque;
-  width: 100%;
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.284);
-  margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: bisque;
+    width: 100%;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.284);
+    margin-bottom: 0.5rem;
 }
 
 .card img {
-  height: 6rem;
-  aspect-ratio: 1;
-  background-color: brown;
-  object-fit: cover;
-  border-radius: .5rem;
+    height: 6rem;
+    aspect-ratio: 1;
+    background-color: brown;
+    object-fit: cover;
+    border-radius: 0.5rem;
 }
 
 .card h2,
 .nameSort {
-  flex: 1;
-  padding-left: 2rem;
+    flex: 1;
+    padding-left: 2rem;
 }
 
 .card .weight,
 .weightSort {
-  width: 15%;
+    width: 15%;
 }
 
 .card .price,
 priceSort {
-  width: 15%;
+    width: 15%;
 }
 
 .card .check,
 .availabilitySort {
-  width: 15%;
+    width: 15%;
 }
 
 .activeCategory {
-  background-color: orange;
+    background-color: orange;
 }
 
 .activeCategory:hover {
-  background-color: orangered;
-  color: white;
+    background-color: orangered;
+    color: white;
 }
 
 .card .availability {
-  height: 2rem;
-  aspect-ratio: 1;
-  background-color: rgb(40, 74, 74);
+    height: 2rem;
+    aspect-ratio: 1;
+    background-color: rgb(40, 74, 74);
 }
 
 /* -------- FORM --------- */
 
 .formContainer {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(58, 6, 6, 0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(58, 6, 6, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .formContainer form {
-  width: 60%;
-  background-color: bisque;
-  border-radius: .5rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
+    width: 60%;
+    background-color: bisque;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .topInputs {
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 }
 
 .columnInputWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: .2rem;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 100%;
 }
 
 .rowInputWrapper {
-  width: 100%;
-  display: flex;
-  gap: .2rem;
-  justify-content: space-between;
+    width: 100%;
+    display: flex;
+    gap: 0.2rem;
+    justify-content: space-between;
 }
 .rowInputWrapper input {
-  flex: 1;
+    flex: 1;
 }
 
 #imgInput {
-  height: 6rem;
-  aspect-ratio: 1;
-  background-color: aqua;
-  background-position: center;
-  background-size: cover;
+    height: 6rem;
+    aspect-ratio: 1;
+    background-image: url("../Media/UI/uploadPhoto.svg");
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
 }
 
 #imgInput::after {
-  content: "Select file";
+    content: "Select file";
 }
 
 #imgInput::-webkit-file-upload-button {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .formButtons {
-  display: flex;
-  justify-content: end;
-  gap: .5rem;
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
 }
 
 .preview {
-  height: 5rem;
-  width: 5rem;
+    height: 5rem;
+    width: 5rem;
 }
 
 .prevImg {
-  width: 100%;
-  height:100%;
+    width: 100%;
+    height: 100%;
 }

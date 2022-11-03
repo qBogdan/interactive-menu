@@ -34,7 +34,7 @@ function initEvents(recipes) {
         $(".formContainer").style.display = "flex";
         editId = false;
         $("#form").reset();
-        $("#imgInput").style.backgroundImage = `none`;
+        $("#imgInput").style.backgroundImage = `url("Media/UI/uploadPhoto.svg")`;
         $(".delete").style.display = "none";
     });
 
@@ -55,10 +55,11 @@ function initEvents(recipes) {
 
 function submintForm(e) {
     e.preventDefault();
+    getInputObject();
     if (editId) {
-        console.log("will edit object");
+        // console.log("will edit object");
     } else {
-        console.log("will create new Object");
+        // console.log("will create new Object");
     }
 }
 
@@ -131,4 +132,31 @@ function addCategoryOptions(categories) {
         categoryOptions += `<option>${cat}</option>`;
     });
     $("#categoryInput").innerHTML = categoryOptions;
+}
+
+function getInputObject() {
+    let newRecipe = {};
+
+    $$(".formInput").forEach((input) => {
+        if (input.name === "img") {
+            newRecipe[input.name] = input.style.backgroundImage;
+        } else if (input.name === "availability") {
+            newRecipe[input.name] = input.checked;
+        } else {
+            newRecipe[input.name] = input.value;
+        }
+    });
+
+    console.log(newRecipe);
+    //return newRecipe;
+}
+switch (input.name) {
+    case "img":
+        newRecipe[input.name] = input.src;
+        break;
+    case "availability":
+        newRecipe[input.name] = input.check;
+        break;
+    default:
+        newRecipe[input.name] = input.value;
 }

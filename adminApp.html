@@ -1,88 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="common/common.js" defer></script>
-    <script src="admin/main.js" defer></script>
-    <script src="admin/fetch.js" defer></script>
-    <link rel="stylesheet" href="admin/style.css" />
-    <title>Admin application</title>
-  </head>
-  <body>
-    <header>
-      <h1>Nume Restaurant</h1>
-      <div class="searchBar">
-        <div class="icon"></div>
-        <input
-          type="search"
-          name="search"
-          id="search"
-          placeholder="Cauta ..."
-        />
-      </div>
-    </header>
-    <section class="categories">
-      <div class="category activeCategory" data-category="all">All</div>
-    </section>
-    <section class="utility">
-      <div class="addRecipe">
-        <button class="addNewRecipe">Adauga</button>
-        
-      </div>
-
-      <div class="sort">
-        <div class="sortType nameSort">
-          <div class="icon">A</div>
-          <div class="icon">Z</div>
-        </div>
-        <div class="sortType weightSort">
-          <div class="icon"></div>
-          <div class="icon"></div>
-        </div>
-        <div class="sortType priceSort">
-          <div class="icon"></div>
-          <div class="icon"></div>
-        </div>
-        <div class="sortType availabilitySort">
-          <div class="icon"></div>
-          <div class="icon"></div>
-        </div>
-      </div>
-    </section>
-    <main>
-    </main>
-    <footer>Last update : Time stamp</footer>
-  
-
-    <div class="formContainer">
-      <form action="" id="form">
-        <div class="topInputs">
-            <input type="file"  name="img" accept=".png, .jpg, .jpeg, .svg" id="imgInput">
-      
-          <div class="columnInputWrapper">
-            <input type="text" id="nameInput" name="name" placeholder="Nume ...">
-            <select name="category" class="formInput" id="categoryInput">
-            </select>
-            <div class="rowInputWrapper">
-              <input type="number" id="weightInput" name="weight" placeholder="Greutate ...">
-              <input type="number" id="priceInput" name="price" placeholder="Pret ...">
-              <input type="number" id="etaInput" name="eta" placeholder="Timp de pregatire ...">
-              <span>Disponibil</span>
-              <input type="checkbox" id="availabilityInput" name="availability">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="common/common.js" defer></script>
+        <script src="admin/main.js" defer></script>
+        <script src="admin/fetch.js" defer></script>
+        <link rel="stylesheet" href="admin/style.css" />
+        <title>Admin application</title>
+    </head>
+    <body>
+        <header>
+            <h1>Nume Restaurant</h1>
+            <div class="searchBar">
+                <div class="searchIcon"></div>
+                <input type="search" name="search" id="search" placeholder="Cauta ..." />
             </div>
-          </div>
-        </div>
-        <textarea name="ingredients" id="ingredientsInput" cols="30" rows="7" placeholder="Ingrediente ..."></textarea>
-        <div class="formButtons">
-          <button class="formButton save">Save</button>
-          <button class="formButton delete">Delete</button>
-          <button class="formButton clear">Clear</button>
-          <button class="formButton close">Close</button>
-        </div>
-      </form>
-    </div>
-  </body>
-</html>
+        </header>
+        <section class="categories">
+            <div class="category activeCategory" data-category="all">All</div>
+        </section>
+        <section class="utility">
+            <div class="addRecipe">
+                <button class="addNewRecipe">Adauga</button>
+            </div>
 
+            <div class="sort">
+                <div class="sortType nameSort">
+                    <div class="iconA">A</div>
+                    <div class="iconA">Z</div>
+                </div>
+                <div class="sortType weightSort">
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                </div>
+                <div class="sortType priceSort">
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                </div>
+                <div class="sortType availabilitySort">
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                </div>
+            </div>
+        </section>
+        <main></main>
+        <footer>Last update : Time stamp</footer>
+
+        <div class="formContainer">
+            <form action="" id="form">
+                <div class="topInputs">
+                    <input class="formInput" type="file" name="img" accept=".png, .jpg, .jpeg, .svg" id="imgInput" />
+
+                    <div class="columnInputWrapper">
+                        <input class="formInput" type="text" id="nameInput" name="name" placeholder="Nume ..." />
+                        <select class="formInput" name="category" class="formInput" id="categoryInput"></select>
+                        <div class="rowInputWrapper">
+                            <input class="formInput" type="number" id="weightInput" name="weight" placeholder="Greutate ..." />
+                            <input class="formInput" type="number" id="priceInput" name="price" placeholder="Pret ..." />
+                            <input class="formInput" type="number" id="etaInput" name="eta" placeholder="Timp de pregatire ..." />
+                            <span>Disponibil</span>
+                            <input class="formInput" type="checkbox" id="availabilityInput" name="availability" />
+                        </div>
+                    </div>
+                </div>
+                <textarea class="formInput" name="ingredients" id="ingredientsInput" cols="30" rows="7" placeholder="Ingrediente ..."></textarea>
+                <div class="formButtons">
+                    <button class="formButton save">Save</button>
+                    <button class="formButton delete">Delete</button>
+                    <button class="formButton clear">Clear</button>
+                    <button class="formButton close">Close</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
