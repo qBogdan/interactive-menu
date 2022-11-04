@@ -19,8 +19,8 @@ const API = {
 
 //const demo = location.host === "qbogdan.github.io" ? true : false;
 demo = true;
-
 const inLineChanges = demo;
+
 if (demo) {
     API.READ.URL = "data/recipes.json";
     API.DELETE.URL = "data/delete.json";
@@ -33,19 +33,13 @@ if (demo) {
 }
 
 function loadRecipes() {
-    fetch(API.READ.URL)
-        .then(list => list.json())
-        .then(r => {
-            const recipes = r;
-            const categories = [...new Set(recipes.map(r => r.category))];
-            adminInit(recipes, categories);
-        });
+    return fetch(API.READ.URL);
 }
 
 function createRecipe(recipe) {
     const method = API.CREATE.METHOD;
     const date = new Date();
-
+    console.log(recipe);
     fetch(API.CREATE.URL, {
         method,
         headers: {
@@ -53,16 +47,20 @@ function createRecipe(recipe) {
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
     })
-        .then(res => res.json())
-        .then(r => {
+        .then((res) => res.json())
+        .then((r) => {
             if (r.success) {
                 if (inLineChanges) {
                     recipe.id = `demoID${date.getTime()}`;
                     recipes.push(recipe);
-                    //reload display
-                    console.log(recipes);
+                    displayRecipes();
                 } else {
-                    loadRecipes();
+                    loadRecipes()
+                        .then((list) => list.json())
+                        .then((r) => {
+                            recipes = r;
+                            displayRecipes();
+                        });
                 }
             }
         });
@@ -78,19 +76,22 @@ function updateRecipe(recipe) {
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
     })
-        .then(res => res.json())
-        .then(r => {
+        .then((res) => res.json())
+        .then((r) => {
             if (r.success) {
                 if (inLineChanges) {
-                    const update = recipes.find(r => r.id === recipe.id);
+                    const update = recipes.find((r) => r.id === recipe.id);
                     for (let key in update) {
                         update[key] = recipe[key];
                     }
-                    //recipes = recipes.map(r => (r.id === editId ? recipe : r));
-                    // reload display
-                    console.log(recipes);
+                    displayRecipes();
                 } else {
-                    loadRecipes();
+                    loadRecipes()
+                        .then((list) => list.json())
+                        .then((r) => {
+                            recipes = r;
+                            displayRecipes();
+                        });
                 }
             }
         });
@@ -106,18 +107,29 @@ function deleteRecipe(delId) {
         },
         body: method === "GET" ? null : JSON.stringify({ id: delId }),
     })
-        .then(res => res.json())
-        .then(r => {
+        .then((res) => res.json())
+        .then((r) => {
             console.log(r);
             if (r.success) {
                 if (inLineChanges) {
-                    recipes = recipes.filter(r => r.id !== delId);
-                    // reload display
+                    recipes = recipes.filter((r) => r.id !== delId);
+                    displayRecipes();
                 } else {
-                    loadRecipes();
+                    loadRecipes()
+                        .then((list) => list.json())
+                        .then((r) => {
+                            recipes = r;
+                            displayRecipes();
+                        });
                 }
             }
         });
 }
 
-loadRecipes();
+loadRecipes()
+    .then((list) => list.json())
+    .then((r) => {
+        recipes = r;
+        const categories = [...new Set(recipes.map((r) => r.category))];
+        adminInit(recipes, categories);
+    });

@@ -54,14 +54,14 @@
                     <input class="formInput" type="file" name="img" accept=".png, .jpg, .jpeg, .svg" id="imgInput" />
 
                     <div class="columnInputWrapper">
-                        <input class="formInput" type="text" id="nameInput" name="name" placeholder="Nume ..." />
-                        <select class="formInput" name="category" class="formInput" id="categoryInput"></select>
+                        <input class="formInput" required type="text" id="nameInput" name="name" placeholder="Nume ..." />
+                        <select class="formInput" required name="category" class="formInput" id="categoryInput"></select>
                         <div class="rowInputWrapper">
-                            <input class="formInput" type="number" id="weightInput" name="weight" placeholder="Greutate ..." />
-                            <input class="formInput" type="number" id="priceInput" name="price" placeholder="Pret ..." />
+                            <input class="formInput" required type="number" id="weightInput" name="weight" placeholder="Greutate ..." />
+                            <input class="formInput" required type="number" id="priceInput" name="price" placeholder="Pret ..." />
                             <input class="formInput" type="number" id="etaInput" name="eta" placeholder="Timp de pregatire ..." />
                             <span>Disponibil</span>
-                            <input class="formInput" type="checkbox" id="availabilityInput" name="availability" />
+                            <input class="formInput" checked="true" type="checkbox" id="availabilityInput" name="availability" />
                         </div>
                     </div>
                 </div>

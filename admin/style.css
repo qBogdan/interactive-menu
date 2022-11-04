@@ -187,12 +187,14 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-.card img {
+.cardImage {
     height: 6rem;
     aspect-ratio: 1;
     background-color: brown;
     object-fit: cover;
     border-radius: 0.5rem;
+    background-position: center;
+    background-size: cover;
 }
 
 .card h2,

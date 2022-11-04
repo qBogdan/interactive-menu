@@ -1,14 +1,16 @@
-let editId;
+let editId = false;
 let base64string;
+let recipes;
 
 function adminInit(recipes, categories) {
+    recipes = recipes;
     displayCategories(categories);
     addCategoryOptions(categories);
     displayRecipes(recipes);
     initEvents(recipes);
 }
 
-function displayCategories(categories, recipes) {
+function displayCategories(categories) {
     // adauga butoane pentru fiecare categorie
     categories.forEach((cat) => {
         const thisCat = div();
@@ -39,7 +41,18 @@ function initEvents(recipes) {
     });
 
     $(".close").addEventListener("click", (e) => {
+        e.preventDefault();
         $(".formContainer").style.display = "none";
+    });
+
+    $(".clear").addEventListener("click", (e) => {
+        e.preventDefault();
+        $("#imgInput").style.backgroundImage = `url("Media/UI/uploadPhoto.svg")`;
+        $("#form").reset();
+    });
+
+    $(".delete").addEventListener("click", (e) => {
+        confirmDelete(e);
     });
 
     $("main").addEventListener("click", (e) => {
@@ -53,14 +66,23 @@ function initEvents(recipes) {
     $("#form").addEventListener("submit", submintForm);
 }
 
+function confirmDelete(e) {
+    e.preventDefault();
+    $(".formContainer").style.display = "none";
+    deleteRecipe(editId);
+}
+
 function submintForm(e) {
     e.preventDefault();
-    getInputObject();
+    const thisRecipe = getInputObject();
+
     if (editId) {
-        // console.log("will edit object");
+        thisRecipe.id = editId;
+        updateRecipe(thisRecipe);
     } else {
-        // console.log("will create new Object");
+        createRecipe(thisRecipe);
     }
+    $(".formContainer").style.display = "none";
 }
 
 async function useImage(e) {
@@ -84,7 +106,7 @@ function cardConstructor(recipe) {
     // creaza structura html pentru carduri
     return `
     <div class="card" data-id="${recipe.id}">
-        <img src="${recipe.img === "" ? `Media/UI/logo.svg` : `${recipe.img}`}">
+        <div class="cardImage" style="background-image: url(${recipe.img === "" ? `Media/UI/logo.svg` : `${recipe.img}`})"></div>
         <h2>${recipe.name}</h2>
         <div class="weight">${recipe.weight} gr</div>
         <div class="price">${recipe.price} Lei</div>
@@ -93,7 +115,7 @@ function cardConstructor(recipe) {
     `;
 }
 
-function displayRecipes(recipes) {
+function displayRecipes() {
     // creaza structura html pentru fiecare reteta din lista si injecteaza finalul in DOM
     let recipesHtml = "";
     $("main").innerHTML = recipesHtml;
@@ -104,7 +126,7 @@ function displayRecipes(recipes) {
     $("main").innerHTML = recipesHtml;
 }
 
-function displayRecipe(id, recipes) {
+function displayRecipe(id) {
     // afiseaza formularul cu informatiile retetei
     const thisRecipe = recipes.find((r) => r.id === id); // gaseste reteta in array
     $(".delete").style.display = "block";
@@ -139,7 +161,8 @@ function getInputObject() {
 
     $$(".formInput").forEach((input) => {
         if (input.name === "img") {
-            newRecipe[input.name] = input.style.backgroundImage;
+            console.log(input.style.backgroundImage.match(/url\((.*?)\)/)[1]);
+            newRecipe[input.name] = input.style.backgroundImage.length > 35 ? input.style.backgroundImage.match(/url\((.*?)\)/)[1] : "";
         } else if (input.name === "availability") {
             newRecipe[input.name] = input.checked;
         } else {
@@ -147,16 +170,5 @@ function getInputObject() {
         }
     });
 
-    console.log(newRecipe);
-    //return newRecipe;
-}
-switch (input.name) {
-    case "img":
-        newRecipe[input.name] = input.src;
-        break;
-    case "availability":
-        newRecipe[input.name] = input.check;
-        break;
-    default:
-        newRecipe[input.name] = input.value;
+    return newRecipe;
 }
