@@ -7,10 +7,12 @@ function order(recipe) {
 }
 
 function addOrder(recipe) {
-    const orderedRecipe = { ...recipe };
+    const orderedRecipe = { ...recipe }; // clonez obiectul primit
     if (orderList.findIndex(r => r.id === recipe.id) >= 0) {
+        //verific daca obiectul este comandat, daca da, adaug +1 la cantitate
         orderList[orderList.findIndex(r => r.id === orderedRecipe.id)].qty++;
     } else {
+        //daca obiectul nu este comandat, il adaug in adaug in lista si setez cantitate ca 1
         orderedRecipe.qty = 1;
         orderList.push(orderedRecipe);
     }
@@ -29,6 +31,7 @@ function calculateTotal() {
     orderList.map(r => (total += r.qty * r.price));
     return total;
 }
+
 function orderCardConstructor(recipe) {
     return `
     <div class="checkCard">
@@ -53,6 +56,7 @@ function tipCardConstructor(percentage, totalTip) {
 }
 
 function changeOrder(e) {
+    // modifica cantitatea retei, iar daca e 0 o elimina din lista
     const thisRecipe = orderList.find(r => r.id === e.target.dataset.id);
     if (e.target.matches(".minusOrder")) {
         thisRecipe.qty--;
@@ -76,6 +80,7 @@ function addTip(e) {
 }
 
 function displayTip() {
+    //calculeaza totalul, procentul bacsisului, le aduna si le afiseaza
     const percentage = $(".tipPercentageSelected").dataset.percentage;
     const total = calculateTotal();
     const totalTip = Math.floor((total * percentage) / 100);

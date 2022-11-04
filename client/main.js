@@ -8,6 +8,7 @@ function menuInit(recipes, categories) {
 }
 
 function filterMenu(recipes, categories) {
+    // filtreaza retetele in functie de categorie
     let menuRecipes = {};
     categories.forEach(ct => {
         menuRecipes[ct] = recipes.filter(r => r.category === ct);
@@ -101,6 +102,7 @@ function changeCategoryTitle() {
 }
 
 function expandCard(card) {
+    // activeaza clasa pentru card expandat cand e clickait
     if (card.matches(".mainCardExpanded")) {
         card.classList.remove("mainCardExpanded");
     } else {
@@ -125,25 +127,27 @@ function addItem(e, recipes) {
 }
 
 function createMenu(recipes, categories) {
-    createCategories(categories);
-    $("#search").placeholder = categories[0];
-    addRecipes(recipes, categories);
+    createCategories(categories); // creaza ferestre pt fiecare categoire
+    $("#search").placeholder = categories[0]; // adauga nume la fiecare categorie
+    addRecipes(recipes, categories); // adaug retete la fiecare categorie in parte
 }
 
 function createCategories(categories) {
     categories.forEach(cat => {
-        const newCat = div();
-        newCat.classList.add(cat, "category");
+        const newCat = div(); // creaza un div nou
+        newCat.classList.add(cat, "category"); // adauga clasa
         newCat.dataset.name = cat;
-        $(".categoryWrapper").append(newCat);
+        $(".categoryWrapper").append(newCat); //adauga in html
     });
 }
 
 function addRecipes(recipes, categories) {
     categories.forEach(cat => {
+        // iterez ficare categorie
         let htmlElements = "";
         recipes[cat].forEach(r => {
-            htmlElements += mainCardConstructor(r);
+            // iterez fiecare obiect
+            htmlElements += mainCardConstructor(r); // creez html pentru obiectul primit
         });
         $(`.${cat}`).innerHTML += htmlElements;
     });
@@ -180,6 +184,7 @@ const mainCardConstructor = recipe => {
 function search(input, recipes, categories) {
     const category = categories[Math.abs(page)];
     const search = recipes.filter(
+        // filtrez retele dupa cautare
         r => r.name.toLowerCase().includes(input.toLowerCase()) || r.ingredients.toLowerCase().includes(input.toLowerCase())
     );
     if (input.length > 0) displaySearch(search, category);

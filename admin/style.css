@@ -230,7 +230,6 @@ priceSort {
 .card .availability {
     height: 2rem;
     aspect-ratio: 1;
-    background-color: rgb(40, 74, 74);
 }
 
 /* -------- FORM --------- */
@@ -308,4 +307,12 @@ priceSort {
 .prevImg {
     width: 100%;
     height: 100%;
+}
+
+.avbTrue {
+background-image: url(../Media/UI/checked.svg);
+}
+
+.avbFalse{
+    background-image: url(../Media/UI/uncheck.svg);
 }

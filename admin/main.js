@@ -12,7 +12,7 @@ function adminInit(recipes, categories) {
 
 function displayCategories(categories) {
     // adauga butoane pentru fiecare categorie
-    categories.forEach((cat) => {
+    categories.forEach(cat => {
         const thisCat = div();
         thisCat.classList.add("category");
         thisCat.innerText = cat;
@@ -23,16 +23,17 @@ function displayCategories(categories) {
 
 function initEvents(recipes) {
     // adds active class to selected category
-    $(".categories").addEventListener("click", (e) => {
+    $(".categories").addEventListener("click", e => {
         if (e.target.matches(".category")) {
-            $$(".category").forEach((btn) => {
+            $$(".category").forEach(btn => {
                 btn.classList.remove("activeCategory");
             });
             e.target.classList.add("activeCategory");
         }
     });
 
-    $(".addNewRecipe").addEventListener("click", (e) => {
+    $(".addNewRecipe").addEventListener("click", e => {
+        //deschide formularul
         $(".formContainer").style.display = "flex";
         editId = false;
         $("#form").reset();
@@ -40,22 +41,26 @@ function initEvents(recipes) {
         $(".delete").style.display = "none";
     });
 
-    $(".close").addEventListener("click", (e) => {
+    $(".close").addEventListener("click", e => {
+        //inchide formularul
         e.preventDefault();
         $(".formContainer").style.display = "none";
     });
 
-    $(".clear").addEventListener("click", (e) => {
+    $(".clear").addEventListener("click", e => {
+        //reseteaza formularul
         e.preventDefault();
         $("#imgInput").style.backgroundImage = `url("Media/UI/uploadPhoto.svg")`;
         $("#form").reset();
     });
 
-    $(".delete").addEventListener("click", (e) => {
+    $(".delete").addEventListener("click", e => {
+        //sterge reteta
         confirmDelete(e);
     });
 
-    $("main").addEventListener("click", (e) => {
+    $("main").addEventListener("click", e => {
+        //deschide formular cu reteta selectata
         if (e.target.closest(".card")) {
             displayRecipe(e.target.closest(".card").dataset.id, recipes);
         }
@@ -63,23 +68,26 @@ function initEvents(recipes) {
 
     $("#imgInput").addEventListener("change", useImage);
 
-    $("#form").addEventListener("submit", submintForm);
+    $("#form").addEventListener("submit", submitForm);
 }
 
 function confirmDelete(e) {
     e.preventDefault();
     $(".formContainer").style.display = "none";
     deleteRecipe(editId);
+    // trimite request sa stearga reteta cu id-ul dat
 }
 
-function submintForm(e) {
+function submitForm(e) {
     e.preventDefault();
-    const thisRecipe = getInputObject();
+    const thisRecipe = getInputObject(); // creez obiect nou cu informatiile din formular
 
     if (editId) {
+        // modific reteta
         thisRecipe.id = editId;
         updateRecipe(thisRecipe);
     } else {
+        //creez
         createRecipe(thisRecipe);
     }
     $(".formContainer").style.display = "none";
@@ -92,7 +100,7 @@ async function useImage(e) {
 }
 
 function getBase64(file) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         const reader = new FileReader();
         let base64string;
         reader.onloadend = () => {
@@ -119,7 +127,7 @@ function displayRecipes() {
     // creaza structura html pentru fiecare reteta din lista si injecteaza finalul in DOM
     let recipesHtml = "";
     $("main").innerHTML = recipesHtml;
-    recipes.forEach((r) => {
+    recipes.forEach(r => {
         recipesHtml += cardConstructor(r);
     });
 
@@ -128,7 +136,7 @@ function displayRecipes() {
 
 function displayRecipe(id) {
     // afiseaza formularul cu informatiile retetei
-    const thisRecipe = recipes.find((r) => r.id === id); // gaseste reteta in array
+    const thisRecipe = recipes.find(r => r.id === id); // gaseste reteta in array
     $(".delete").style.display = "block";
     editId = id;
     for (let key in thisRecipe) {
@@ -150,7 +158,7 @@ function displayRecipe(id) {
 function addCategoryOptions(categories) {
     // adauga optiunile de categorii din formularul de creare
     let categoryOptions;
-    categories.forEach((cat) => {
+    categories.forEach(cat => {
         categoryOptions += `<option>${cat}</option>`;
     });
     $("#categoryInput").innerHTML = categoryOptions;
@@ -159,10 +167,10 @@ function addCategoryOptions(categories) {
 function getInputObject() {
     let newRecipe = {};
 
-    $$(".formInput").forEach((input) => {
+    $$(".formInput").forEach(input => {
         if (input.name === "img") {
-            console.log(input.style.backgroundImage.match(/url\((.*?)\)/)[1]);
-            newRecipe[input.name] = input.style.backgroundImage.length > 35 ? input.style.backgroundImage.match(/url\((.*?)\)/)[1] : "";
+            console.log(input.style.backgroundImage.match(/url\("(.*?)"\)/)[1]);
+            newRecipe[input.name] = input.style.backgroundImage.length > 35 ? input.style.backgroundImage.match(/url\("(.*?)"\)/)[1] : "";
         } else if (input.name === "availability") {
             newRecipe[input.name] = input.checked;
         } else {
