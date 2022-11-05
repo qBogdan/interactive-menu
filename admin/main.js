@@ -74,8 +74,18 @@ function initEvents(recipes) {
 function confirmDelete(e) {
     e.preventDefault();
     $(".formContainer").style.display = "none";
-    deleteRecipe(editId);
-    // trimite request sa stearga reteta cu id-ul dat
+    deleteRecipe(editId) // trimite request sa stearga reteta cu id-ul dat
+        .then(res => res.json())
+        .then(r => {
+            if (r.success) {
+                if (inLineChanges) {
+                    recipes = recipes.filter(r => r.id !== editId);
+                    displayRecipes();
+                } else {
+                    refreshDisplay();
+                }
+            }
+        });
 }
 
 function submitForm(e) {
@@ -83,12 +93,37 @@ function submitForm(e) {
     const thisRecipe = getInputObject(); // creez obiect nou cu informatiile din formular
 
     if (editId) {
-        // modific reteta
         thisRecipe.id = editId;
-        updateRecipe(thisRecipe);
+        updateRecipe(thisRecipe)
+            .then(res => res.json())
+            .then(r => {
+                if (r.success) {
+                    if (inLineChanges) {
+                        const update = recipes.find(r => r.id === editId);
+                        for (let key in update) {
+                            update[key] = thisRecipe[key];
+                        }
+                        displayRecipes();
+                    } else {
+                        refreshDisplay();
+                    }
+                }
+            });
     } else {
-        //creez
-        createRecipe(thisRecipe);
+        const date = new Date();
+        createRecipe(thisRecipe)
+            .then(res => res.json())
+            .then(r => {
+                if (r.success) {
+                    if (inLineChanges) {
+                        thisRecipe.id = `demoID${date.getTime()}`;
+                        recipes.push(thisRecipe);
+                        displayRecipes();
+                    } else {
+                        refreshDisplay();
+                    }
+                }
+            });
     }
     $(".formContainer").style.display = "none";
 }
@@ -169,7 +204,6 @@ function getInputObject() {
 
     $$(".formInput").forEach(input => {
         if (input.name === "img") {
-            console.log(input.style.backgroundImage.match(/url\("(.*?)"\)/)[1]);
             newRecipe[input.name] = input.style.backgroundImage.length > 35 ? input.style.backgroundImage.match(/url\("(.*?)"\)/)[1] : "";
         } else if (input.name === "availability") {
             newRecipe[input.name] = input.checked;
@@ -179,4 +213,13 @@ function getInputObject() {
     });
 
     return newRecipe;
+}
+
+function refreshDisplay() {
+    loadRecipes()
+        .then(list => list.json())
+        .then(r => {
+            recipes = r;
+            displayRecipes();
+        });
 }

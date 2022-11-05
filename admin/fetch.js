@@ -18,7 +18,7 @@ const API = {
 };
 
 //const demo = location.host === "qbogdan.github.io" ? true : false;
-demo = true;
+demo = false;
 const inLineChanges = demo;
 
 if (demo) {
@@ -38,63 +38,26 @@ function loadRecipes() {
 
 function createRecipe(recipe) {
     const method = API.CREATE.METHOD;
-    const date = new Date();
-    console.log(recipe);
-    fetch(API.CREATE.URL, {
+
+    return fetch(API.CREATE.URL, {
         method,
         headers: {
             "Content-Type": "application/json",
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
-    })
-        .then((res) => res.json())
-        .then((r) => {
-            if (r.success) {
-                if (inLineChanges) {
-                    recipe.id = `demoID${date.getTime()}`;
-                    recipes.push(recipe);
-                    displayRecipes();
-                } else {
-                    loadRecipes()
-                        .then((list) => list.json())
-                        .then((r) => {
-                            recipes = r;
-                            displayRecipes();
-                        });
-                }
-            }
-        });
+    });
 }
 
 function updateRecipe(recipe) {
     const method = API.UPDATE.METHOD;
 
-    fetch(API.UPDATE.URL, {
+    return fetch(API.UPDATE.URL, {
         method,
         headers: {
             "Content-Type": "application/json",
         },
         body: method === "GET" ? null : JSON.stringify(recipe),
-    })
-        .then((res) => res.json())
-        .then((r) => {
-            if (r.success) {
-                if (inLineChanges) {
-                    const update = recipes.find((r) => r.id === recipe.id);
-                    for (let key in update) {
-                        update[key] = recipe[key];
-                    }
-                    displayRecipes();
-                } else {
-                    loadRecipes()
-                        .then((list) => list.json())
-                        .then((r) => {
-                            recipes = r;
-                            displayRecipes();
-                        });
-                }
-            }
-        });
+    });
 }
 
 function deleteRecipe(delId) {
@@ -106,30 +69,13 @@ function deleteRecipe(delId) {
             "Content-Type": "application/json",
         },
         body: method === "GET" ? null : JSON.stringify({ id: delId }),
-    })
-        .then((res) => res.json())
-        .then((r) => {
-            console.log(r);
-            if (r.success) {
-                if (inLineChanges) {
-                    recipes = recipes.filter((r) => r.id !== delId);
-                    displayRecipes();
-                } else {
-                    loadRecipes()
-                        .then((list) => list.json())
-                        .then((r) => {
-                            recipes = r;
-                            displayRecipes();
-                        });
-                }
-            }
-        });
+    });
 }
 
 loadRecipes()
-    .then((list) => list.json())
-    .then((r) => {
+    .then(list => list.json())
+    .then(r => {
         recipes = r;
-        const categories = [...new Set(recipes.map((r) => r.category))];
+        const categories = [...new Set(recipes.map(r => r.category))];
         adminInit(recipes, categories);
     });
