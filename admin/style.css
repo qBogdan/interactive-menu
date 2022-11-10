@@ -12,19 +12,25 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    background: #355c7d; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #c06c84, #6c5b7b, #355c7d); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #c06c84, #6c5b7b, #355c7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 header {
     width: 100%;
     padding: 1rem;
-    background-color: rgb(55, 52, 52);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-header h1 {
-    color: bisque;
+.logo {
+    height: 5rem;
+    width: 100%;
+    background-image: url(../Media/UI/logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
     margin-bottom: 1rem;
 }
 
@@ -61,7 +67,7 @@ header .searchIcon {
 .categories {
     width: 100%;
     padding: 0.5rem;
-    background-color: rgb(180, 174, 171);
+    background-color: rgba(59, 8, 8, 0);
     display: flex;
     justify-content: center;
     gap: 0.5rem;
@@ -72,6 +78,9 @@ header .searchIcon {
     padding: 0.5rem 1.5rem;
     border-radius: 0.5rem;
     background-color: bisque;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: rgb(4, 31, 4);
 }
 
 .category:hover {
@@ -82,7 +91,7 @@ header .searchIcon {
 main {
     flex: 1;
     width: 100%;
-    padding: 1rem;
+    padding: 0 1rem;
     overflow-y: scroll;
 }
 
@@ -97,7 +106,8 @@ main::-webkit-scrollbar-track {
 
 footer {
     width: 100%;
-
+    color: grey;
+    text-align: center;
     background-color: rgb(55, 52, 52);
     padding: 1rem;
 }
@@ -109,21 +119,29 @@ footer {
 
 .addRecipe {
     width: 100%;
-
-    background-color: rgb(157, 187, 24);
+    background-color: rgb(125, 250, 162);
     padding: 0.5rem;
     border-radius: 0.5rem;
     text-align: center;
-
     font-size: 1.6rem;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.174);
     margin-bottom: 0.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(35, 48, 16);
+    cursor: pointer;
+}
+
+.addRecipe:hover {
+    background-color: rgb(183, 241, 201);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.174);
+    color: black;
 }
 
 .sort {
     width: 100%;
 
-    background-color: rgb(55, 52, 52);
+    background-color: rgba(55, 52, 52, 0.699);
 
     border-radius: 0.5rem;
     display: flex;
@@ -181,55 +199,89 @@ footer {
     align-items: center;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background-color: bisque;
+    background-color: rgba(90, 11, 9, 0.699);
     width: 100%;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.284);
     margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.card:hover {
+    outline: 2px solid rgba(245, 222, 179, 0.445);
+    outline-offset: 0px;
 }
 
 .cardImage {
     height: 6rem;
     aspect-ratio: 1;
     background-color: brown;
+
     object-fit: cover;
     border-radius: 0.5rem;
     background-position: center;
     background-size: cover;
 }
 
-.card h2,
+.card h2 {
+    width: 50%;
+    margin-left: 2rem;
+    color: rgb(231, 250, 255);
+    font-family: "Ubuntu", sans-serif;
+    font-size: 2.2rem;
+}
 .nameSort {
-    flex: 1;
+    width: 59%;
     padding-left: 2rem;
 }
 
 .card .weight,
 .weightSort {
-    width: 15%;
+    display: flex;
+    justify-content: center;
+    width: 12%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 233, 233);
 }
 
 .card .price,
-priceSort {
-    width: 15%;
+.priceSort {
+    width: 12%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 233, 233);
 }
 
 .card .check,
 .availabilitySort {
-    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+.card .check {
+    width: 12%;
+}
+
+.availabilitySort {
+    width: 14%;
 }
 
 .activeCategory {
-    background-color: orange;
+    background-color: rgb(68, 209, 143);
 }
 
 .activeCategory:hover {
-    background-color: orangered;
-    color: white;
+    background-color: rgb(125, 250, 162);
 }
 
 .card .availability {
     height: 2rem;
-    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 15%;
 }
 
 /* -------- FORM --------- */
@@ -310,9 +362,9 @@ priceSort {
 }
 
 .avbTrue {
-background-image: url(../Media/UI/checked.svg);
+    background-image: url(../Media/UI/checked.svg);
 }
 
-.avbFalse{
+.avbFalse {
     background-image: url(../Media/UI/uncheck.svg);
 }
