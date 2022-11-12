@@ -50,7 +50,6 @@ function createRecipe(recipe) {
 
 function updateRecipe(recipe) {
     const method = API.UPDATE.METHOD;
-
     return fetch(API.UPDATE.URL, {
         method,
         headers: {

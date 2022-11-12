@@ -76,22 +76,6 @@ function initEvents(recipes) {
     $("#search").addEventListener("input", e => {
         search(e.target.value);
     });
-
-    $(".sort").addEventListener("click", e => {
-        if (e.target.matches(".sortButton")) {
-            sortRecipes(e.target.dataset.sort, e.target.dataset.value);
-        }
-    });
-}
-
-function sortRecipes(type, value) {
-    filteredRecipes.sort((a, b) => {
-        if (type === "name") {
-            //sort bt
-        }
-    });
-    displayRecipes;
-    console.log(type, value);
 }
 
 function filterRecipes(filter) {
@@ -135,7 +119,6 @@ function confirmDelete(e) {
 function submitForm(e) {
     e.preventDefault();
     const thisRecipe = getInputObject(); // creez obiect nou cu informatiile din formular
-
     if (editId) {
         thisRecipe.id = editId;
         updateRecipe(thisRecipe)
@@ -197,7 +180,7 @@ function cardConstructor(recipe) {
         <h2>${recipe.name}</h2>
         <div class="weight">${recipe.weight} gr</div>
         <div class="price">${recipe.price} Lei</div>
-        <div class="availability ${recipe.availability === true ? "avbTrue" : "avbFalse"}"></div>
+        <div class="availability ${recipe.availability == true ? "avbTrue" : "avbFalse"}"></div>
     </div>
     `;
 }
@@ -206,7 +189,6 @@ function displayRecipes() {
     // creaza structura html pentru fiecare reteta din lista si injecteaza finalul in DOM
 
     let recipesHtml = "";
-    $("main").innerHTML = recipesHtml;
     filteredRecipes.forEach(r => {
         recipesHtml += cardConstructor(r);
     });
@@ -265,6 +247,7 @@ function refreshDisplay() {
         .then(list => list.json())
         .then(r => {
             recipes = r;
+            filteredRecipes = recipes;
             displayRecipes();
         });
 }
