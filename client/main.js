@@ -68,7 +68,7 @@ function initEvents(recipes, categories) {
     });
 
     $(".selectTip").addEventListener("click", e => {
-        addTip(e);
+        if (e.target.matches(".tipPercentage")) addTip(e);
     });
 }
 

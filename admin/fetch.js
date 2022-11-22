@@ -18,7 +18,7 @@ const API = {
 };
 
 //const demo = location.host === "qbogdan.github.io" ? true : false;
-demo = true;
+demo = false;
 const inLineChanges = demo;
 
 if (demo) {
