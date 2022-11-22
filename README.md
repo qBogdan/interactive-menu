@@ -1,11 +1,10 @@
 ## Interactive Restaurant Menu
 
 ## Goals 
-- [x] Admin app - w.i.p.
-- [ ] Price and tip Calculator 
-- [ ] Search function
-- [ ] Alergens highlight
-- [ ] Mobile friendly
+- [x] Admin app
+- [x] Price and tip Calculator 
+- [x] Search function
+- [x] Mobile friendly
 
 ## TEAM
 
@@ -17,7 +16,9 @@
 
 ## Live
 
-[Demo](https://qBogdan.github.io/interactive-menu)
+[Demo Client App](https://qBogdan.github.io/interactive-menu)
+
+[Demo Admin App](https://qBogdan.github.io/interactive-menu/adminApp.html)
 
 
 ## Admin app API
